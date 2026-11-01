@@ -2,39 +2,100 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Academic Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhjargal — Portfolio</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>My Academic Portfolio</h1>
-    <p>Coursework, projects, and diploma work</p>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <h1>Enhjargal</h1>
+      <p class="subtitle">Full-Stack Developer</p>
+      <p class="tagline">Coursework &amp; Diploma Projects</p>
+      <div class="hero-links">
+        <a href="https://github.com/Enhjargal22" target="_blank" class="btn">GitHub</a>
+        <a href="#projects" class="btn btn-outline">View Projects ↓</a>
+      </div>
+    </div>
   </header>
 
-  <section class="grid">
-    <!-- Course work -->
-    <article class="card">
-      <h2>Coursework</h2>
-      <ul>
-        <li><strong>Course 1:</strong> Brief description, link to PDF or repo.</li>
-        <li><strong>Course 2:</strong> Brief description, link to PDF or repo.</li>
-        <!-- Add more items -->
-      </ul>
+  <!-- Projects -->
+  <section id="projects" class="container">
+    <h2 class="section-title">Projects</h2>
+
+    <!-- BLAZE.by Sports Magazine -->
+    <article class="project-card featured">
+      <div class="project-badge">Diploma Work</div>
+      <h3>BLAZE.by — Sports Magazine &amp; E-Commerce Platform</h3>
+      <p class="project-desc">
+        A full-stack sports e-commerce platform with product catalog, shopping cart, 
+        order management, user authentication (JWT), admin &amp; analyst dashboards, 
+        content management, personalized product recommendations, smart search, 
+        and a built-in analytics system. Includes an Android mobile app.
+      </p>
+
+      <div class="tech-stack">
+        <h4>Tech Stack</h4>
+        <div class="tags">
+          <span class="tag frontend">React 18</span>
+          <span class="tag frontend">TypeScript</span>
+          <span class="tag frontend">Material UI 5</span>
+          <span class="tag frontend">Vite</span>
+          <span class="tag frontend">Recharts</span>
+          <span class="tag backend">Spring Boot 3</span>
+          <span class="tag backend">Java 17</span>
+          <span class="tag backend">Spring Security</span>
+          <span class="tag backend">JPA / Hibernate</span>
+          <span class="tag db">MySQL</span>
+          <span class="tag mobile">Android (Kotlin)</span>
+          <span class="tag tool">JWT Auth</span>
+          <span class="tag tool">REST API</span>
+          <span class="tag tool">OpenAPI / Swagger</span>
+        </div>
+      </div>
+
+      <div class="features">
+        <h4>Key Features</h4>
+        <ul>
+          <li><strong>Storefront</strong> — Product catalog with categories, detail pages, image zoom, favorites, and smart search</li>
+          <li><strong>Shopping</strong> — Cart, checkout flow, order history</li>
+          <li><strong>Auth &amp; Roles</strong> — Registration, login (JWT), role-based access (Buyer, Admin, Analyst, Content Manager)</li>
+          <li><strong>Admin Dashboard</strong> — User management, product CRUD, order processing</li>
+          <li><strong>Analytics Dashboard</strong> — User-behavior event tracking, session analytics, data visualizations (Recharts)</li>
+          <li><strong>Content Manager</strong> — Articles/news publishing system with rich editing</li>
+          <li><strong>Recommendations</strong> — Personalized product suggestions based on user activity</li>
+          <li><strong>Android App</strong> — Native mobile client for the platform</li>
+        </ul>
+      </div>
+
+      <div class="pages-grid">
+        <h4>Application Pages</h4>
+        <div class="page-list">
+          <span>Home</span><span>Product List</span><span>Product Detail</span>
+          <span>Cart</span><span>Checkout</span><span>My Orders</span>
+          <span>Login</span><span>Register</span><span>Profile</span>
+          <span>Favorites</span><span>Reading List</span><span>News</span>
+          <span>Articles</span><span>About</span>
+          <span>Admin Dashboard</span><span>Analyst Dashboard</span>
+          <span>Analytics Dashboard</span><span>Content Manager</span>
+        </div>
+      </div>
+
+      <div class="project-links">
+        <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" class="btn btn-sm">Source Code</a>
+      </div>
     </article>
 
-    <!-- Diploma projects -->
-    <article class="card">
-      <h2>Diploma Projects</h2>
-      <ul>
-        <li><strong>Project A:</strong> Short abstract, link to repository or demo.</li>
-        <li><strong>Project B:</strong> Short abstract, link to repository or demo.</li>
-        <!-- Add more items -->
-      </ul>
-    </article>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>© 2026 Your Name – <a href="mailto:you@example.com">Contact</a></p>
+    <div class="container">
+      <p>&copy; 2026 Enhjargal &middot; <a href="https://github.com/Enhjargal22" target="_blank">GitHub</a></p>
+    </div>
   </footer>
+
 </body>
 </html>
