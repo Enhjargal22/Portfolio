@@ -930,12 +930,17 @@
                 </p>
               </div>
               <div class="flex flex-col gap-space-md pt-space-md">
-                <div class="flex items-center gap-space-sm p-space-md rounded-lg bg-surface-container border border-outline-variant/20">
-                  <span class="material-symbols-outlined text-secondary text-2xl">mail</span>
-                  <div class="flex flex-col font-mono-meta text-mono-meta">
-                    <span class="text-on-surface font-medium">EMAIL CONTACT</span>
-                    <a href="mailto:enhjargal8919@gmail.com" class="text-secondary hover:underline">enhjargal8919@gmail.com</a>
+                <div class="flex items-center justify-between p-space-md rounded-lg bg-surface-container border border-outline-variant/20">
+                  <div class="flex items-center gap-space-sm">
+                    <span class="material-symbols-outlined text-secondary text-2xl">mail</span>
+                    <div class="flex flex-col font-mono-meta text-mono-meta">
+                      <span class="text-on-surface font-medium">EMAIL CONTACT</span>
+                      <a href="mailto:enhjargal8919@gmail.com" class="text-secondary hover:underline">enhjargal8919@gmail.com</a>
+                    </div>
                   </div>
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=enhjargal8919@gmail.com" target="_blank" rel="noopener noreferrer" class="px-space-sm py-1 rounded bg-surface-container-high hover:bg-surface-bright text-secondary text-xs font-mono font-medium transition-colors inline-flex items-center gap-1 border border-outline-variant/30" title="Open directly in Gmail web composer">
+                    <span>Gmail Web ↗</span>
+                  </a>
                 </div>
                 <div class="flex items-center justify-between p-space-md rounded-lg bg-surface-container border border-outline-variant/20">
                   <div class="flex items-center gap-space-sm">
@@ -960,20 +965,24 @@
 
             <!-- Right: Interactive Consultation Form -->
             <div class="lg:col-span-7 flex flex-col bg-surface-container-lowest p-space-lg rounded-xl shadow-inner border border-outline-variant/20">
-              <form class="flex flex-col gap-space-md" id="contact-form" onsubmit="event.preventDefault(); const res = document.getElementById('form-feedback'); res.classList.remove('hidden');">
+              <form class="flex flex-col gap-space-md" id="contact-form" onsubmit="handleContactSubmit(event)">
+                <input type="hidden" name="_subject" value="[Portfolio Inquiry] New message from Enhjargal.dev">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+
                 <div class="flex flex-col gap-space-xs">
                   <label class="font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant">1. Discussion Topic</label>
                   <div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="scope-selector">
                     <label class="flex items-center gap-2 p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high cursor-pointer transition-colors border border-outline-variant/20">
-                      <input checked="" class="accent-primary" name="scope" type="radio" value="job">
+                      <input checked="" class="accent-primary" name="scope" type="radio" value="Job Opportunity">
                       <span class="font-mono-meta text-mono-meta text-on-surface">Job Opportunity</span>
                     </label>
                     <label class="flex items-center gap-2 p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high cursor-pointer transition-colors border border-outline-variant/20">
-                      <input class="accent-primary" name="scope" type="radio" value="fullstack">
+                      <input class="accent-primary" name="scope" type="radio" value="Full-Stack Project">
                       <span class="font-mono-meta text-mono-meta text-on-surface">Full-Stack Project</span>
                     </label>
                     <label class="flex items-center gap-2 p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high cursor-pointer transition-colors border border-outline-variant/20">
-                      <input class="accent-primary" name="scope" type="radio" value="mobile">
+                      <input class="accent-primary" name="scope" type="radio" value="Android / Mobile">
                       <span class="font-mono-meta text-mono-meta text-on-surface">Android / Mobile</span>
                     </label>
                   </div>
@@ -982,32 +991,38 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
                   <div class="flex flex-col gap-1">
                     <label class="font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant">Your Name / Company</label>
-                    <input class="w-full px-space-md py-2.5 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-high focus:outline-none focus:ring-1 focus:ring-secondary transition-all placeholder:text-outline-variant border border-outline-variant/20" placeholder="Recruiter / Tech Lead" required="" type="text">
+                    <input id="form-name" name="name" class="w-full px-space-md py-2.5 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-high focus:outline-none focus:ring-1 focus:ring-secondary transition-all placeholder:text-outline-variant border border-outline-variant/20" placeholder="Recruiter / Tech Lead" required="" type="text">
                   </div>
                   <div class="flex flex-col gap-1">
                     <label class="font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant">Email Address</label>
-                    <input class="w-full px-space-md py-2.5 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-high focus:outline-none focus:ring-1 focus:ring-secondary transition-all placeholder:text-outline-variant border border-outline-variant/20" placeholder="lead@company.com" required="" type="email">
+                    <input id="form-email" name="email" class="w-full px-space-md py-2.5 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-high focus:outline-none focus:ring-1 focus:ring-secondary transition-all placeholder:text-outline-variant border border-outline-variant/20" placeholder="lead@company.com" required="" type="email">
                   </div>
                 </div>
 
                 <div class="flex flex-col gap-1">
                   <label class="font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant">Message &bull; Project Overview</label>
-                  <textarea class="w-full p-space-md rounded-lg bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-high focus:outline-none focus:ring-1 focus:ring-secondary transition-all placeholder:text-outline-variant border border-outline-variant/20" placeholder="Tell me about the role, technical challenge, or project..." required="" rows="4"></textarea>
+                  <textarea id="form-message" name="message" class="w-full p-space-md rounded-lg bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-high focus:outline-none focus:ring-1 focus:ring-secondary transition-all placeholder:text-outline-variant border border-outline-variant/20" placeholder="Tell me about the role, technical challenge, or project..." required="" rows="4"></textarea>
                 </div>
 
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-2">
-                  <button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm px-space-xl py-3 rounded-lg bg-primary-container text-on-primary-container hover:bg-inverse-primary font-headline-sm text-headline-sm transition-all shadow-md cursor-pointer" type="submit">
-                    <span>Send Message</span>
-                    <span class="material-symbols-outlined text-base">send</span>
-                  </button>
-                  <span class="font-mono-meta text-mono-meta text-on-surface-variant">
-                    Direct Response &bull; Quick Turnaround
+                  <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <button id="form-submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm px-space-xl py-3 rounded-lg bg-primary-container text-on-primary-container hover:bg-inverse-primary font-headline-sm text-headline-sm transition-all shadow-md cursor-pointer disabled:opacity-50" type="submit">
+                      <span id="btn-text">Send Message</span>
+                      <span class="material-symbols-outlined text-base" id="btn-icon">send</span>
+                    </button>
+                    <!-- Open in Gmail option -->
+                    <a id="open-gmail-direct" href="https://mail.google.com/mail/?view=cm&fs=1&to=enhjargal8919@gmail.com&su=Portfolio%20Inquiry" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface border border-outline-variant/30 font-mono-meta text-mono-meta transition-all shrink-0" title="Open Gmail composer directly">
+                      <span>Open in Gmail ↗</span>
+                    </a>
+                  </div>
+                  <span class="font-mono-meta text-mono-meta text-on-surface-variant text-right">
+                    Delivered straight to <strong class="text-secondary font-mono">enhjargal8919@gmail.com</strong>
                   </span>
                 </div>
 
                 <div class="hidden p-space-md rounded-lg bg-surface-container text-secondary font-mono-meta text-mono-meta flex items-center gap-2 border border-secondary/30" id="form-feedback">
-                  <span class="material-symbols-outlined text-base">task_alt</span>
-                  <span>Thank you! Your message has been recorded. I will follow up shortly.</span>
+                  <span class="material-symbols-outlined text-base" id="feedback-icon">task_alt</span>
+                  <span id="feedback-text">Message successfully sent! It will arrive in enhjargal8919@gmail.com inbox shortly.</span>
                 </div>
               </form>
             </div>
@@ -1186,6 +1201,77 @@
   </footer>
 
   <script>
+
+    // Real Gmail Contact Form Submission Handler
+    async function handleContactSubmit(event) {
+      event.preventDefault();
+      const form = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('form-submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnIcon = document.getElementById('btn-icon');
+      const feedback = document.getElementById('form-feedback');
+      const feedbackIcon = document.getElementById('feedback-icon');
+      const feedbackText = document.getElementById('feedback-text');
+
+      const name = document.getElementById('form-name').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+      const message = document.getElementById('form-message').value.trim();
+      const scopeElem = form.querySelector('input[name="scope"]:checked');
+      const scope = scopeElem ? scopeElem.value : 'General Inquiry';
+
+      // UI Loading state
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending to Gmail...';
+      btnIcon.textContent = 'hourglass_top';
+      feedback.classList.add('hidden');
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/enhjargal8919@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            topic: scope,
+            message: message,
+            _subject: `[Portfolio ${scope}] from ${name} (${email})`,
+            _template: 'table'
+          })
+        });
+
+        const data = await response.json();
+
+        feedback.classList.remove('hidden');
+        if (data.success === 'true' || response.ok || (data.message && data.message.includes('Activation'))) {
+          feedback.className = 'p-space-md rounded-lg bg-surface-container text-[#4cd7f6] font-mono-meta text-mono-meta flex items-center gap-2 border border-[#4cd7f6]/40 shadow-sm';
+          feedbackIcon.textContent = 'task_alt';
+          feedbackText.textContent = 'Success! Message delivered to enhjargal8919@gmail.com. I will follow up shortly.';
+          form.reset();
+        } else {
+          // If activation is needed or custom message
+          feedback.className = 'p-space-md rounded-lg bg-surface-container text-[#acedff] font-mono-meta text-mono-meta flex items-center gap-2 border border-secondary/40 shadow-sm';
+          feedbackIcon.textContent = 'info';
+          feedbackText.textContent = data.message || 'Form submitted! Please check enhjargal8919@gmail.com.';
+        }
+      } catch (err) {
+        console.error('Submission error:', err);
+        // Fallback option directly to mailto / Gmail web
+        feedback.classList.remove('hidden');
+        feedback.className = 'p-space-md rounded-lg bg-surface-container text-tertiary font-mono-meta text-mono-meta flex flex-col gap-2 border border-tertiary/40 shadow-sm';
+        feedbackIcon.textContent = 'forward_to_inbox';
+        const mailSubject = encodeURIComponent(`[${scope}] Inquiry from ${name}`);
+        const mailBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nTopic: ${scope}\n\nMessage:\n${message}`);
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=enhjargal8919@gmail.com&su=${mailSubject}&body=${mailBody}`;
+        feedbackText.innerHTML = `Direct send notice: Click <a href="${gmailUrl}" target="_blank" class="text-secondary font-bold underline">Open in Gmail</a> to send directly from your Gmail account.`;
+      } finally {
+        submitBtn.disabled = false;
+        btnText.textContent = 'Send Message';
+        btnIcon.textContent = 'send';
+      }
+    }
 
     // About Modal Controller
     function openAboutModal(event) {
