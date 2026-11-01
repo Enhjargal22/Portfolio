@@ -197,8 +197,11 @@ a:hover { color: var(--accent-hover); }
   color: var(--text-muted);
 }
 
+.btn-ghost { background: transparent; color: var(--text-muted); border-color: var(--border); }
+.btn-ghost:hover { background: var(--surface-hover); color: var(--text); border-color: #444; }
+
 /* ===== Project Links ===== */
-.project-links { margin-top: 1.5rem; }
+.project-links { margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
 /* ===== Footer ===== */
 footer {
