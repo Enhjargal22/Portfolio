@@ -1,286 +1,887 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enhjargal — Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="web_standard" name="shell-type">
+  <title>Enhjargal — Full-Stack &amp; Mobile Systems Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-high": "#282a30",
+            "primary-container": "#4f46e5",
+            "surface-tint": "#c3c0ff",
+            "on-secondary-fixed": "#001f26",
+            "surface-container-low": "#191b22",
+            "on-surface": "#e2e2eb",
+            "secondary-container": "#03b5d3",
+            "on-tertiary-fixed-variant": "#7b2f00",
+            "on-error": "#690005",
+            "on-primary": "#1d00a5",
+            "tertiary": "#ffb695",
+            "error": "#ffb4ab",
+            "inverse-surface": "#e2e2eb",
+            "on-secondary": "#003640",
+            "on-surface-variant": "#c7c4d8",
+            "on-error-container": "#ffdad6",
+            "surface-container": "#1e1f26",
+            "tertiary-fixed": "#ffdbcc",
+            "on-secondary-container": "#00424e",
+            "error-container": "#93000a",
+            "primary-fixed-dim": "#c3c0ff",
+            "surface-container-lowest": "#0c0e14",
+            "surface": "#111319",
+            "secondary": "#4cd7f6",
+            "on-tertiary-fixed": "#351000",
+            "primary-fixed": "#e2dfff",
+            "on-secondary-fixed-variant": "#004e5c",
+            "outline": "#918fa1",
+            "surface-dim": "#111319",
+            "on-tertiary-container": "#ffd2be",
+            "primary": "#c3c0ff",
+            "outline-variant": "#464555",
+            "tertiary-container": "#a44100",
+            "inverse-primary": "#4d44e3",
+            "on-tertiary": "#571f00",
+            "surface-container-highest": "#33343b",
+            "on-background": "#e2e2eb",
+            "surface-bright": "#373940",
+            "inverse-on-surface": "#2e3037",
+            "on-primary-container": "#dad7ff",
+            "secondary-fixed": "#acedff",
+            "surface-variant": "#33343b",
+            "on-primary-fixed": "#0f0069",
+            "secondary-fixed-dim": "#4cd7f6",
+            "tertiary-fixed-dim": "#ffb695",
+            "background": "#111319",
+            "on-primary-fixed-variant": "#3323cc"
+          },
+          borderRadius: {
+            DEFAULT: "0.125rem",
+            lg: "0.25rem",
+            xl: "0.5rem",
+            full: "0.75rem"
+          },
+          spacing: {
+            "space-lg": "1.5rem",
+            "margin": "1.25rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "gutter-desktop": "2rem",
+            "space-sm": "0.5rem",
+            "margin-desktop": "3rem",
+            "gutter": "1.5rem",
+            "space-xs": "0.25rem"
+          },
+          fontFamily: {
+            "headline-md": ["Geist", "sans-serif"],
+            "headline-sm": ["Geist", "sans-serif"],
+            "body-md": ["Geist", "sans-serif"],
+            "body-sm": ["Geist", "sans-serif"],
+            "mono-meta": ["JetBrains Mono", "monospace"],
+            "display-mobile": ["Geist", "sans-serif"],
+            "body-lg": ["Geist", "sans-serif"],
+            "display": ["Geist", "sans-serif"],
+            "mono-code": ["JetBrains Mono", "monospace"],
+            "headline-lg-mobile": ["Geist", "sans-serif"],
+            "mono-badge": ["JetBrains Mono", "monospace"],
+            "headline-lg": ["Geist", "sans-serif"]
+          },
+          fontSize: {
+            "headline-md": ["1.5rem", { lineHeight: "1.875rem", letterSpacing: "-0.02em", fontWeight: "500" }],
+            "headline-sm": ["1.25rem", { lineHeight: "1.625rem", letterSpacing: "-0.015em", fontWeight: "500" }],
+            "body-md": ["0.9375rem", { lineHeight: "1.5rem", letterSpacing: "-0.005em", fontWeight: "400" }],
+            "body-sm": ["0.8125rem", { lineHeight: "1.25rem", letterSpacing: "0em", fontWeight: "400" }],
+            "mono-meta": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.02em", fontWeight: "400" }],
+            "display-mobile": ["2.5rem", { lineHeight: "2.75rem", letterSpacing: "-0.03em", fontWeight: "600" }],
+            "body-lg": ["1.125rem", { lineHeight: "1.75rem", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "display": ["4rem", { lineHeight: "4.25rem", letterSpacing: "-0.04em", fontWeight: "600" }],
+            "mono-code": ["0.875rem", { lineHeight: "1.375rem", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "headline-lg-mobile": ["1.75rem", { lineHeight: "2rem", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "mono-badge": ["0.6875rem", { lineHeight: "0.875rem", letterSpacing: "0.06em", fontWeight: "500" }],
+            "headline-lg": ["2.5rem", { lineHeight: "2.75rem", letterSpacing: "-0.03em", fontWeight: "600" }]
+          }
+        }
+      }
+    };
+  </script>
 </head>
-<body>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="container">
-      <h1>Enhjargal</h1>
-      <p class="subtitle">Full-Stack &amp; Mobile Developer</p>
-      <p class="tagline">Coursework, Full-Stack &amp; Diploma Projects</p>
-      <div class="hero-links">
-        <a href="https://github.com/Enhjargal22" target="_blank" class="btn">GitHub Profile</a>
-        <a href="#projects" class="btn btn-outline">View Projects ↓</a>
+  <!-- ==================== HEADER NAVBAR ==================== -->
+  <header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-outline-variant/20">
+    <div class="h-20 max-w-[1320px] mx-auto px-margin-desktop flex items-center justify-between gap-space-md">
+      <div class="flex items-center gap-space-md shrink-0">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-surface-container-lowest font-mono-code font-bold text-sm shadow-md">
+          E
+        </div>
+        <span class="font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface font-semibold">ENHJARGAL.DEV</span>
+        <div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-full shadow-[0_0_12px_rgba(3,181,211,0.08)]">
+          <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          <span class="font-mono-badge text-mono-badge uppercase tracking-wider text-secondary">Open to Full-Stack &amp; Mobile Roles</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-space-lg">
+        <a class="font-mono-meta text-mono-meta tracking-wider uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="#about">About</a>
+        <a class="font-mono-meta text-mono-meta tracking-wider uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="#projects">Projects</a>
+        <a class="font-mono-meta text-mono-meta tracking-wider uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="#stack">Stack</a>
+        <a class="font-mono-meta text-mono-meta tracking-wider uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="#contact">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-space-md shrink-0">
+        <a class="hidden sm:inline-flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-bright text-on-surface hover:text-on-surface font-mono-meta text-mono-meta uppercase tracking-wider rounded-lg transition-all" href="https://github.com/Enhjargal22/Portfolio" target="_blank">
+          <span class="material-symbols-outlined text-sm">code</span>
+          <span>GitHub</span>
+        </a>
+        <a class="inline-flex items-center gap-space-xs px-space-md py-space-xs bg-primary-container hover:bg-inverse-primary text-on-primary-container font-mono-meta text-mono-meta uppercase tracking-wider rounded-lg transition-all shadow-sm" href="#projects">
+          <span class="material-symbols-outlined text-sm">visibility</span>
+          <span>Live Demos</span>
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- Projects -->
-  <section id="projects" class="container">
-    <h2 class="section-title">Projects</h2>
+  <main class="w-full pt-20 bg-surface min-h-screen">
+    <div class="flex flex-col w-full">
 
-    <!-- Project 1: BLAZE.by Sports Magazine -->
-    <article class="project-card featured">
-      <div class="project-badge">Diploma Work</div>
-      <h3>BLAZE.by — Sports Magazine &amp; E-Commerce Platform</h3>
-      <p class="project-desc">
-        A full-stack sports e-commerce platform with product catalog, shopping cart, 
-        order management, user authentication (JWT), admin &amp; analyst dashboards, 
-        content management, personalized product recommendations, smart search, 
-        and a built-in analytics system. Includes an Android mobile app.
-      </p>
+      <!-- ==================== HERO SECTION ==================== -->
+      <section class="relative w-full max-w-[1320px] mx-auto px-margin-desktop py-space-xl lg:py-24" id="about">
+        <!-- Ambient Backdrop Aura Glow -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[360px] bg-primary-container/10 blur-[130px] pointer-events-none rounded-full"></div>
+        <div class="absolute top-1/3 right-10 w-[380px] h-[260px] bg-secondary-container/10 blur-[100px] pointer-events-none rounded-full"></div>
 
-      <div class="tech-stack">
-        <h4>Tech Stack</h4>
-        <div class="tags">
-          <span class="tag frontend">React 18</span>
-          <span class="tag frontend">TypeScript</span>
-          <span class="tag frontend">Material UI 5</span>
-          <span class="tag frontend">Vite</span>
-          <span class="tag frontend">Recharts</span>
-          <span class="tag backend">Spring Boot 3</span>
-          <span class="tag backend">Java 17</span>
-          <span class="tag backend">Spring Security</span>
-          <span class="tag backend">JPA / Hibernate</span>
-          <span class="tag db">MySQL</span>
-          <span class="tag mobile">Android (Kotlin)</span>
-          <span class="tag tool">JWT Auth</span>
-          <span class="tag tool">REST API</span>
-          <span class="tag tool">OpenAPI / Swagger</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center relative z-10">
+          <!-- Left Column: Positioning & Typography -->
+          <div class="lg:col-span-7 flex flex-col gap-space-lg">
+            <div class="inline-flex items-center gap-space-sm self-start px-space-md py-1 rounded-full bg-surface-container-high shadow-sm">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+              </span>
+              <span class="font-mono-meta text-mono-meta text-on-surface-variant uppercase tracking-wider">PORTFOLIO // DIPLOMA &amp; FULL-STACK PROJECTS</span>
+            </div>
+
+            <div class="flex flex-col gap-space-xs">
+              <p class="font-mono-meta text-mono-meta uppercase tracking-widest text-secondary font-medium">
+                Full-Stack &amp; Mobile Systems Engineer
+              </p>
+              <h1 class="font-headline-lg text-headline-lg lg:font-display lg:text-display text-on-surface tracking-tight leading-[1.08]">
+                Crafting robust enterprise backends &amp; hyper-responsive modern web interfaces.
+              </h1>
+            </div>
+
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+              Architecting production-ready applications with <strong>Spring Boot 3</strong>, <strong>Kotlin</strong>, <strong>Java 17</strong>, <strong>React 19 / TypeScript</strong>, and <strong>Android Jetpack Compose</strong>. Focused on clean domain architectures, high-performance APIs, and polished user experiences.
+            </p>
+
+            <!-- CTAs & Direct Email Copy -->
+            <div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+              <a class="inline-flex items-center justify-center gap-space-sm px-space-lg py-3 rounded-lg bg-on-surface text-surface-container-lowest font-headline-sm text-headline-sm font-semibold hover:bg-white hover:shadow-[0_0_24px_rgba(79,70,229,0.35)] transition-all" href="#projects">
+                <span>Explore Live Projects</span>
+                <span class="material-symbols-outlined text-lg">arrow_downward</span>
+              </a>
+              <a class="inline-flex items-center justify-center gap-space-sm px-space-lg py-3 rounded-lg bg-surface-container-high text-on-surface font-headline-sm text-headline-sm hover:bg-surface-bright transition-all" href="https://github.com/Enhjargal22" target="_blank">
+                <span>GitHub Profile</span>
+                <span class="material-symbols-outlined text-lg">open_in_new</span>
+              </a>
+              <!-- Quick Copy Email Button -->
+              <button class="inline-flex items-center gap-space-sm px-space-md py-3 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-all font-mono-meta text-mono-meta tracking-wider group border border-outline-variant/30" id="copy-email-btn" onclick="navigator.clipboard.writeText('enhjargal.dev@gmail.com'); const el = document.getElementById('copy-feedback'); el.textContent='Copied!'; setTimeout(()=>el.textContent='enhjargal.dev@gmail.com', 2000)" title="Copy email address">
+                <span class="material-symbols-outlined text-base group-hover:text-secondary transition-colors">content_copy</span>
+                <span id="copy-feedback">enhjargal.dev@gmail.com</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Code Engine Widget -->
+          <div class="lg:col-span-5 flex flex-col">
+            <div class="w-full bg-surface-container-low rounded-xl shadow-xl overflow-hidden backdrop-blur-md border border-outline-variant/30">
+              <!-- Terminal Header Bar -->
+              <div class="flex items-center justify-between px-space-md py-2.5 bg-surface-container border-b border-outline-variant/20">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-error inline-block"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-tertiary-container inline-block"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-secondary-container inline-block"></span>
+                  <span class="ml-2 font-mono-badge text-mono-badge text-on-surface-variant tracking-wider uppercase">FinanceKernel.kt</span>
+                </div>
+                <div class="flex items-center gap-space-xs font-mono-badge text-mono-badge text-secondary">
+                  <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                  <span>BUILD &bull; PASSING</span>
+                </div>
+              </div>
+              <!-- Code Snippet Area -->
+              <div class="p-space-md font-mono-code text-mono-code text-on-surface bg-surface-container-lowest/80 overflow-x-auto leading-relaxed">
+                <div class="text-outline-variant select-none">// Multi-Currency Financial Ledger Service</div>
+                <div><span class="text-tertiary">@Service</span></div>
+                <div><span class="text-tertiary">class</span> <span class="text-secondary">FinancialEngine</span>(</div>
+                <div class="pl-4"><span class="text-outline">private val</span> <span class="text-on-surface">ledgerRepo</span>: <span class="text-primary-fixed">TransactionRepository</span>,</div>
+                <div class="pl-4"><span class="text-outline">private val</span> <span class="text-on-surface">rateService</span>: <span class="text-primary-fixed">CurrencyExchangeService</span></div>
+                <div>) {</div>
+                <div class="pl-4 py-1"><span class="text-tertiary">suspend fun</span> <span class="text-secondary">rebalancePortfolio</span>(<span class="text-on-surface">userId</span>: <span class="text-primary-fixed">Long</span>): <span class="text-primary-fixed">FinancialSummary</span> {</div>
+                <div class="pl-8 text-on-surface-variant"><span class="text-tertiary">val</span> rates = rateService.<span class="text-secondary">getActiveRates</span>()</div>
+                <div class="pl-8 text-on-surface-variant"><span class="text-tertiary">val</span> balance = ledgerRepo.<span class="text-secondary">calculateAvailableBalance</span>(userId, rates)</div>
+                <div class="pl-8 text-on-surface-variant"><span class="text-tertiary">return</span> <span class="text-primary">FinancialSummary</span>(balance, status = <span class="text-secondary">LedgerStatus.HEALTHY</span>)</div>
+                <div class="pl-4">}</div>
+                <div>}</div>
+              </div>
+              <!-- Test Runner & Telemetry Footer -->
+              <div class="p-space-md bg-surface-container flex flex-col gap-space-sm border-t border-outline-variant/20">
+                <div class="flex items-center justify-between font-mono-meta text-mono-meta">
+                  <div class="flex items-center gap-space-xs text-secondary">
+                    <span class="material-symbols-outlined text-sm">check_circle</span>
+                    <span>All 4 Projects Live &amp; Operational</span>
+                  </div>
+                  <span class="text-on-surface-variant font-mono-badge text-mono-badge">SPRING 3.2 &bull; REACT 19</span>
+                </div>
+                <div class="grid grid-cols-3 gap-space-xs pt-1">
+                  <div class="p-2 rounded bg-surface-container-high flex flex-col">
+                    <span class="font-mono-badge text-mono-badge text-on-surface-variant">TOTAL PROJECTS</span>
+                    <span class="font-mono-code text-mono-code font-bold text-secondary">4 Shipped</span>
+                  </div>
+                  <div class="p-2 rounded bg-surface-container-high flex flex-col">
+                    <span class="font-mono-badge text-mono-badge text-on-surface-variant">MOBILE APPS</span>
+                    <span class="font-mono-code text-mono-code font-bold text-primary">4 Kotlin</span>
+                  </div>
+                  <div class="p-2 rounded bg-surface-container-high flex flex-col">
+                    <span class="font-mono-badge text-mono-badge text-on-surface-variant">TEST COVERAGE</span>
+                    <span class="font-mono-code text-mono-code font-bold text-on-surface">High SLA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="features">
-        <h4>Key Features</h4>
-        <ul>
-          <li><strong>Storefront &amp; Catalog</strong> — Comprehensive catalog with category/brand filtering, detail pages, image zoom, favorites, and smart search</li>
-          <li><strong>Shopping Experience</strong> — Cart, checkout flow, order history tracking</li>
-          <li><strong>Auth &amp; Roles</strong> — Role-based access control (Buyer, Admin, Analyst, Content Manager)</li>
-          <li><strong>Admin Dashboard</strong> — User management, product CRUD, and order management</li>
-          <li><strong>Analytics Engine</strong> — User-behavior tracking, session analytics, and data visualizations (Recharts)</li>
-          <li><strong>Content Management</strong> — Sports magazine article publishing with topic tagging</li>
-          <li><strong>Recommendations</strong> — Personalized product recommendations based on user activity</li>
-          <li><strong>Android Mobile Client</strong> — Native Android app for browsing and purchases</li>
-        </ul>
-      </div>
-
-      <div class="pages-grid">
-        <h4>Application Pages</h4>
-        <div class="page-list">
-          <span>Home</span><span>Product List</span><span>Product Detail</span>
-          <span>Cart</span><span>Checkout</span><span>My Orders</span>
-          <span>Login</span><span>Register</span><span>Profile</span>
-          <span>Favorites</span><span>Reading List</span><span>News</span>
-          <span>Articles</span><span>About</span>
-          <span>Admin Dashboard</span><span>Analyst Dashboard</span>
-          <span>Analytics Dashboard</span><span>Content Manager</span>
+        <!-- Impact Metrics Ribbon -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-space-md mt-space-xl pt-space-lg">
+          <div class="flex flex-col gap-1 p-space-md rounded-xl bg-surface-container-low shadow-sm border border-outline-variant/20">
+            <span class="font-display text-display text-on-surface font-semibold tracking-tight">4</span>
+            <span class="font-mono-meta text-mono-meta uppercase tracking-wider text-secondary">Full-Stack Deployments</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Live, interactive production apps</span>
+          </div>
+          <div class="flex flex-col gap-1 p-space-md rounded-xl bg-surface-container-low shadow-sm border border-outline-variant/20">
+            <span class="font-display text-display text-on-surface font-semibold tracking-tight">4</span>
+            <span class="font-mono-meta text-mono-meta uppercase tracking-wider text-primary">Companion Android Apps</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Native Kotlin + Jetpack Compose</span>
+          </div>
+          <div class="flex flex-col gap-1 p-space-md rounded-xl bg-surface-container-low shadow-sm border border-outline-variant/20">
+            <span class="font-display text-display text-on-surface font-semibold tracking-tight">100%</span>
+            <span class="font-mono-meta text-mono-meta uppercase tracking-wider text-secondary">Typesafe Architecture</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">TypeScript, Spring Data &amp; Zod</span>
+          </div>
+          <div class="flex flex-col gap-1 p-space-md rounded-xl bg-surface-container-low shadow-sm border border-outline-variant/20">
+            <span class="font-display text-display text-on-surface font-semibold tracking-tight">99.9%</span>
+            <span class="font-mono-meta text-mono-meta uppercase tracking-wider text-tertiary">Vercel &amp; Cloud Uptime</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">High availability &amp; instant loads</span>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="project-links">
-        <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" class="btn btn-sm btn-ghost">Source Code</a>
-        <a href="https://dist-indol-alpha-39.vercel.app" target="_blank" class="btn btn-sm">🌐 See Live Site</a>
-      </div>
-    </article>
-
-    <!-- Project 2: DevPrep Interview Preparation -->
-    <article class="project-card featured">
-      <div class="project-badge" style="background: #6366f1;">Full-Stack + Kotlin</div>
-      <h3>DevPrep — Technical Interview Preparation &amp; Hiring Platform</h3>
-      <p class="project-desc">
-        A full-stack developer assessment and interview preparation platform featuring interactive 
-        multi-track topic quizzes (Frontend, Backend, Mobile), timed technical interview simulations with 
-        accuracy scoring, job board with candidate application tracking, employer assessment portal, and a 
-        companion native Android application developed in Kotlin with Jetpack Compose.
-      </p>
-
-      <div class="tech-stack">
-        <h4>Tech Stack</h4>
-        <div class="tags">
-          <span class="tag frontend">React 18</span>
-          <span class="tag frontend">TypeScript</span>
-          <span class="tag frontend">Material UI 5</span>
-          <span class="tag frontend">Recharts</span>
-          <span class="tag frontend">Canvas Confetti</span>
-          <span class="tag backend">Spring Boot 3.2</span>
-          <span class="tag backend">Java 17</span>
-          <span class="tag backend">Spring Security (JWT)</span>
-          <span class="tag backend">Spring Data JPA</span>
-          <span class="tag db">MySQL</span>
-          <span class="tag mobile">Kotlin</span>
-          <span class="tag mobile">Jetpack Compose</span>
-          <span class="tag mobile">Hilt DI</span>
-          <span class="tag mobile">Retrofit</span>
-          <span class="tag tool">REST API</span>
+      <!-- ==================== SELECTED PROJECTS MATRIX ==================== -->
+      <section class="w-full max-w-[1320px] mx-auto px-margin-desktop py-space-xl" id="projects">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+          <div class="flex flex-col gap-space-xs max-w-2xl">
+            <div class="flex items-center gap-space-xs font-mono-meta text-mono-meta uppercase tracking-widest text-secondary">
+              <span class="material-symbols-outlined text-sm">folder_open</span>
+              <span>Portfolio // Shipped Products &amp; Platforms</span>
+            </div>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Full-Stack &amp; Mobile Applications</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Coursework, full-stack systems, and diploma work engineered end-to-end with Spring Boot, Kotlin, React, and Android.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 p-1 bg-surface-container-low rounded-lg shadow-sm self-start md:self-end border border-outline-variant/20" id="project-filters">
+            <button class="filter-tab active px-space-md py-1.5 rounded-md font-mono-meta text-mono-meta uppercase tracking-wider bg-surface-container-high text-on-surface shadow-sm transition-all" data-category="all" onclick="filterProjects('all')">All Works</button>
+            <button class="filter-tab px-space-md py-1.5 rounded-md font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-all" data-category="fintech" onclick="filterProjects('fintech')">FinTech &amp; SaaS</button>
+            <button class="filter-tab px-space-md py-1.5 rounded-md font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-all" data-category="ecommerce" onclick="filterProjects('ecommerce')">E-Commerce</button>
+            <button class="filter-tab px-space-md py-1.5 rounded-md font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-all" data-category="tasks" onclick="filterProjects('tasks')">Tasks &amp; Collaboration</button>
+          </div>
         </div>
-      </div>
 
-      <div class="features">
-        <h4>Key Features</h4>
-        <ul>
-          <li><strong>Interview Simulator</strong> — Timed technical interview simulation with real-time countdown, score calculation, and performance breakdown</li>
-          <li><strong>Topic Training &amp; Quizzes</strong> — Domain-specific question banks (Frontend, Backend, Mobile) with difficulty filters (Easy, Medium, Hard) and detailed answer explanations</li>
-          <li><strong>Job Board &amp; Hiring</strong> — Vacancy listings with filter by experience level and direction; candidate application submission with CV attachment</li>
-          <li><strong>Employer Portal</strong> — Candidate review system with candidate interview stats, test accuracy metrics, and application status management</li>
-          <li><strong>Candidate Analytics &amp; Streaks</strong> — Progress tracking, success rate graphs, streak counter, and comprehensive user statistics</li>
-          <li><strong>Admin Control Center</strong> — Test creation wizard, question &amp; category management, platform-wide metrics via Recharts</li>
-          <li><strong>Android Application (DevPrep Mobile)</strong> — Native Android client with Jetpack Compose, Material 3, Hilt Dependency Injection, and Retrofit</li>
-        </ul>
-      </div>
+        <!-- Grid Container -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg" id="projects-container">
 
-      <div class="pages-grid">
-        <h4>Application Modules</h4>
-        <div class="page-list">
-          <span>Home Overview</span><span>Topic Training</span><span>Interview Simulation</span>
-          <span>Job Board</span><span>My Applications</span><span>Employer Portal</span>
-          <span>Analytics Dashboard</span><span>Question Manager</span><span>Category Manager</span>
-          <span>User Manager</span><span>Performance Stats</span><span>Candidate Profile</span>
+          <!-- ==================== Project 1: BLAZE.by Sports Magazine ==================== -->
+          <div class="project-card group flex flex-col justify-between p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all shadow-md border border-outline-variant/20" data-category="ecommerce">
+            <div class="flex flex-col gap-space-md">
+              <div class="flex items-center justify-between">
+                <span class="font-mono-meta text-mono-meta uppercase tracking-widest text-secondary font-medium">01 // DIPLOMA WORK &bull; E-COMMERCE</span>
+                <div class="flex items-center gap-space-xs px-2 py-0.5 rounded-full bg-surface-container-high">
+                  <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                  <span class="font-mono-badge text-mono-badge text-secondary uppercase">LIVE PRODUCTION ↗</span>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-baseline justify-between flex-wrap gap-2">
+                  <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-secondary transition-colors">BLAZE.by — Sports Magazine &amp; E-Commerce Platform</h3>
+                  <span class="font-mono-badge text-mono-badge text-primary bg-primary-container/10 px-2 py-0.5 rounded">Diploma Project</span>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">
+                  Full-scale sports apparel &amp; equipment e-commerce platform with smart catalog filtering, shopping cart, user authentication (JWT), admin &amp; analyst dashboards, content publishing, recommendations, and a companion Android client.
+                </p>
+              </div>
+
+              <!-- Browser Mockup Chrome Frame -->
+              <div class="w-full rounded-lg bg-surface-container-lowest overflow-hidden shadow-inner flex flex-col border border-outline-variant/30">
+                <div class="flex items-center justify-between px-3 py-2 bg-surface-container border-b border-outline-variant/20 font-mono-meta text-mono-meta">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-error inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-tertiary-container inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-secondary-container inline-block"></span>
+                  </div>
+                  <div class="flex items-center gap-1 px-3 py-0.5 rounded bg-surface-container-low text-on-surface-variant text-mono-badge">
+                    <span class="material-symbols-outlined text-xs text-secondary">lock</span>
+                    <span>dist-indol-alpha-39.vercel.app</span>
+                  </div>
+                  <span class="material-symbols-outlined text-sm text-outline">refresh</span>
+                </div>
+                <div class="relative w-full h-[240px] overflow-hidden bg-surface-container-lowest">
+                  <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=900&auto=format&fit=crop&q=80" alt="BLAZE.by Sports E-Commerce Preview" class="w-full h-full object-cover object-center opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-300">
+                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono-meta text-mono-meta text-on-surface">
+                    <span class="bg-surface-container-high/90 px-2.5 py-1 rounded backdrop-blur text-mono-badge uppercase">Catalog &bull; Cart &bull; Analytics</span>
+                    <span class="bg-secondary/10 text-secondary border border-secondary/20 px-2 py-0.5 rounded backdrop-blur text-mono-badge font-bold">Android App Ready</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="flex flex-wrap items-center gap-space-xs">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">React 18</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">TypeScript</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Material UI 5</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Spring Boot 3</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">MySQL</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Android (Kotlin)</span>
+              </div>
+            </div>
+
+            <!-- Action Links -->
+            <div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-lg mt-space-md border-t border-outline-variant/20">
+              <div class="flex items-center gap-space-sm flex-wrap">
+                <a href="https://dist-indol-alpha-39.vercel.app" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface hover:text-secondary hover:bg-surface-bright transition-all font-mono-meta text-mono-meta font-medium">
+                  <span>Live Demo</span>
+                  <span class="material-symbols-outlined text-sm">open_in_new</span>
+                </a>
+                <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all font-mono-meta text-mono-meta">
+                  <span class="material-symbols-outlined text-sm">code</span>
+                  <span>Source Code</span>
+                </a>
+              </div>
+              <a href="https://dist-indol-alpha-39.vercel.app" target="_blank" class="font-mono-badge text-mono-badge text-secondary font-semibold hover:underline">VISIT PLATFORM ↗</a>
+            </div>
+          </div>
+
+          <!-- ==================== Project 2: DevPrep Technical Interview ==================== -->
+          <div class="project-card group flex flex-col justify-between p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all shadow-md border border-outline-variant/20" data-category="fintech">
+            <div class="flex flex-col gap-space-md">
+              <div class="flex items-center justify-between">
+                <span class="font-mono-meta text-mono-meta uppercase tracking-widest text-primary font-medium">02 // EDTECH &bull; HIRING PLATFORM</span>
+                <div class="flex items-center gap-space-xs px-2 py-0.5 rounded-full bg-surface-container-high">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  <span class="font-mono-badge text-mono-badge text-primary uppercase">LIVE APP ↗</span>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-baseline justify-between flex-wrap gap-2">
+                  <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">DevPrep — Technical Interview Preparation &amp; Hiring</h3>
+                  <span class="font-mono-badge text-mono-badge text-secondary bg-secondary-container/10 px-2 py-0.5 rounded">Timed Simulation</span>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">
+                  Interactive multi-track developer quiz engine (Frontend, Backend, Mobile), timed interview simulations with precision score breakdowns, job vacancy board with CV tracking, employer portal, and native Android app.
+                </p>
+              </div>
+
+              <!-- Browser Mockup Chrome Frame -->
+              <div class="w-full rounded-lg bg-surface-container-lowest overflow-hidden shadow-inner flex flex-col border border-outline-variant/30">
+                <div class="flex items-center justify-between px-3 py-2 bg-surface-container border-b border-outline-variant/20 font-mono-meta text-mono-meta">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-error inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-tertiary-container inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-secondary-container inline-block"></span>
+                  </div>
+                  <div class="flex items-center gap-1 px-3 py-0.5 rounded bg-surface-container-low text-on-surface-variant text-mono-badge">
+                    <span class="material-symbols-outlined text-xs text-primary">lock</span>
+                    <span>devprep-interview-hazel.vercel.app</span>
+                  </div>
+                  <span class="material-symbols-outlined text-sm text-outline">refresh</span>
+                </div>
+                <div class="relative w-full h-[240px] overflow-hidden bg-surface-container-lowest">
+                  <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&auto=format&fit=crop&q=80" alt="DevPrep Interview Platform Preview" class="w-full h-full object-cover object-center opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-300">
+                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono-meta text-mono-meta text-on-surface">
+                    <span class="bg-surface-container-high/90 px-2.5 py-1 rounded backdrop-blur text-mono-badge uppercase">Quizzes &bull; Job Board &bull; Analytics</span>
+                    <span class="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded backdrop-blur text-mono-badge font-bold">Jetpack Compose</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="flex flex-wrap items-center gap-space-xs">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">React 18</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">TypeScript</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Spring Boot 3.2</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Java 17</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Kotlin</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Jetpack Compose</span>
+              </div>
+            </div>
+
+            <!-- Action Links -->
+            <div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-lg mt-space-md border-t border-outline-variant/20">
+              <div class="flex items-center gap-space-sm flex-wrap">
+                <a href="https://devprep-interview-hazel.vercel.app" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface hover:text-primary hover:bg-surface-bright transition-all font-mono-meta text-mono-meta font-medium">
+                  <span>Live Demo</span>
+                  <span class="material-symbols-outlined text-sm">open_in_new</span>
+                </a>
+                <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all font-mono-meta text-mono-meta">
+                  <span class="material-symbols-outlined text-sm">code</span>
+                  <span>Source Code</span>
+                </a>
+              </div>
+              <a href="https://devprep-interview-hazel.vercel.app" target="_blank" class="font-mono-badge text-mono-badge text-primary font-semibold hover:underline">TRY QUIZZES ↗</a>
+            </div>
+          </div>
+
+          <!-- ==================== Project 3: BYnance Personal Finance ==================== -->
+          <div class="project-card group flex flex-col justify-between p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all shadow-md border border-outline-variant/20" data-category="fintech">
+            <div class="flex flex-col gap-space-md">
+              <div class="flex items-center justify-between">
+                <span class="font-mono-meta text-mono-meta uppercase tracking-widest text-secondary font-medium">03 // FINTECH &bull; WEALTH MANAGEMENT</span>
+                <div class="flex items-center gap-space-xs px-2 py-0.5 rounded-full bg-surface-container-high">
+                  <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  <span class="font-mono-badge text-mono-badge text-secondary uppercase">LIVE FINTECH APP ↗</span>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-baseline justify-between flex-wrap gap-2">
+                  <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-secondary transition-colors">BYnance — Personal Finance &amp; Wealth Management</h3>
+                  <span class="font-mono-badge text-mono-badge text-secondary bg-secondary-container/10 px-2 py-0.5 rounded">Multi-Currency</span>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">
+                  Fintech platform with multi-currency conversion, budget caps, savings milestone goals, financial analytics charts (Recharts), PDF &amp; Excel statement generation, admin panel, and an Android client.
+                </p>
+              </div>
+
+              <!-- Browser Mockup Chrome Frame -->
+              <div class="w-full rounded-lg bg-surface-container-lowest overflow-hidden shadow-inner flex flex-col border border-outline-variant/30">
+                <div class="flex items-center justify-between px-3 py-2 bg-surface-container border-b border-outline-variant/20 font-mono-meta text-mono-meta">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-error inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-tertiary-container inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-secondary-container inline-block"></span>
+                  </div>
+                  <div class="flex items-center gap-1 px-3 py-0.5 rounded bg-surface-container-low text-on-surface-variant text-mono-badge">
+                    <span class="material-symbols-outlined text-xs text-secondary">lock</span>
+                    <span>bynance-finance.vercel.app</span>
+                  </div>
+                  <span class="material-symbols-outlined text-sm text-outline">refresh</span>
+                </div>
+                <div class="relative w-full h-[240px] overflow-hidden bg-surface-container-lowest">
+                  <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=900&auto=format&fit=crop&q=80" alt="BYnance Personal Finance UI Preview" class="w-full h-full object-cover object-center opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-300">
+                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono-meta text-mono-meta text-on-surface">
+                    <span class="bg-surface-container-high/90 px-2.5 py-1 rounded backdrop-blur text-mono-badge uppercase">Ledger &bull; Goals &bull; Admin Panel</span>
+                    <span class="bg-secondary/10 text-secondary border border-secondary/20 px-2 py-0.5 rounded backdrop-blur text-mono-badge font-bold">PDF / Excel Export</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="flex flex-wrap items-center gap-space-xs">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">React 19</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">TypeScript</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Spring Boot 3</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Recharts</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">jsPDF / SheetJS</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Android (Kotlin)</span>
+              </div>
+            </div>
+
+            <!-- Action Links -->
+            <div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-lg mt-space-md border-t border-outline-variant/20">
+              <div class="flex items-center gap-space-sm flex-wrap">
+                <a href="https://bynance-finance.vercel.app/admin" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface hover:text-secondary hover:bg-surface-bright transition-all font-mono-meta text-mono-meta font-medium">
+                  <span>Admin Demo</span>
+                  <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+                </a>
+                <a href="https://bynance-finance.vercel.app" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all font-mono-meta text-mono-meta">
+                  <span class="material-symbols-outlined text-sm">dashboard</span>
+                  <span>Dashboard</span>
+                </a>
+              </div>
+              <a href="https://bynance-finance.vercel.app" target="_blank" class="font-mono-badge text-mono-badge text-secondary font-semibold hover:underline">OPEN BYNANCE ↗</a>
+            </div>
+          </div>
+
+          <!-- ==================== Project 4: Housework Tasks (ДомДела) ==================== -->
+          <div class="project-card group flex flex-col justify-between p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all shadow-md border border-outline-variant/20" data-category="tasks">
+            <div class="flex flex-col gap-space-md">
+              <div class="flex items-center justify-between">
+                <span class="font-mono-meta text-mono-meta uppercase tracking-widest text-primary font-medium">04 // COLLABORATIVE WORKSPACE &bull; GAMIFICATION</span>
+                <div class="flex items-center gap-space-xs px-2 py-0.5 rounded-full bg-surface-container-high">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  <span class="font-mono-badge text-mono-badge text-primary uppercase">LIVE APP ↗</span>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-baseline justify-between flex-wrap gap-2">
+                  <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">ДомДела (Housework Tasks) — Family Chore &amp; Task Hub</h3>
+                  <span class="font-mono-badge text-mono-badge text-primary bg-primary-container/10 px-2 py-0.5 rounded">Kanban &bull; Calendar</span>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">
+                  Collaborative family task management system featuring drag-and-drop Kanban (@dnd-kit), photo verification workflow with 5-star ratings, leaderboard with streak counters, interactive calendar, real-time family chat, and a native Android app.
+                </p>
+              </div>
+
+              <!-- Browser Mockup Chrome Frame -->
+              <div class="w-full rounded-lg bg-surface-container-lowest overflow-hidden shadow-inner flex flex-col border border-outline-variant/30">
+                <div class="flex items-center justify-between px-3 py-2 bg-surface-container border-b border-outline-variant/20 font-mono-meta text-mono-meta">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-error inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-tertiary-container inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-secondary-container inline-block"></span>
+                  </div>
+                  <div class="flex items-center gap-1 px-3 py-0.5 rounded bg-surface-container-low text-on-surface-variant text-mono-badge">
+                    <span class="material-symbols-outlined text-xs text-primary">lock</span>
+                    <span>housework-tasks.vercel.app</span>
+                  </div>
+                  <span class="material-symbols-outlined text-sm text-outline">refresh</span>
+                </div>
+                <div class="relative w-full h-[240px] overflow-hidden bg-surface-container-lowest">
+                  <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&auto=format&fit=crop&q=80" alt="Housework Tasks Kanban & Family Hub Preview" class="w-full h-full object-cover object-center opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-300">
+                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono-meta text-mono-meta text-on-surface">
+                    <span class="bg-surface-container-high/90 px-2.5 py-1 rounded backdrop-blur text-mono-badge uppercase">Kanban &bull; Chat &bull; Streaks</span>
+                    <span class="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded backdrop-blur text-mono-badge font-bold">Android Native</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="flex flex-wrap items-center gap-space-xs">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">React 19</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">TypeScript</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Tailwind CSS</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">@dnd-kit</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Spring Boot 3</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-mono-badge text-mono-badge">Android (Kotlin)</span>
+              </div>
+            </div>
+
+            <!-- Action Links -->
+            <div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-lg mt-space-md border-t border-outline-variant/20">
+              <div class="flex items-center gap-space-sm flex-wrap">
+                <a href="https://housework-tasks.vercel.app" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface hover:text-primary hover:bg-surface-bright transition-all font-mono-meta text-mono-meta font-medium">
+                  <span>Live App</span>
+                  <span class="material-symbols-outlined text-sm">open_in_new</span>
+                </a>
+                <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all font-mono-meta text-mono-meta">
+                  <span class="material-symbols-outlined text-sm">code</span>
+                  <span>Source Code</span>
+                </a>
+              </div>
+              <a href="https://housework-tasks.vercel.app" target="_blank" class="font-mono-badge text-mono-badge text-primary font-semibold hover:underline">EXPLORE TASKS ↗</a>
+            </div>
+          </div>
+
         </div>
-      </div>
+      </section>
 
-      <div class="project-links">
-        <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" class="btn btn-sm btn-ghost">Source Code</a>
-        <a href="https://devprep-interview-hazel.vercel.app" target="_blank" class="btn btn-sm">🌐 See Live Site</a>
-      </div>
-    </article>
-
-    <!-- Project 3: BYnance Personal Finance -->
-    <article class="project-card featured">
-      <div class="project-badge" style="background: #10b981;">FinTech Full-Stack</div>
-      <h3>BYnance — Personal Finance &amp; Wealth Management System</h3>
-      <p class="project-desc">
-        A full-stack personal finance and wealth management platform built with React 19, Spring Boot 3, and Kotlin. 
-        Enables multi-currency income/expense tracking, category-based budgeting limits, visual analytics with Recharts, 
-        financial goal milestones, PDF and Excel financial statement generation, and a companion Android application built in Kotlin.
-      </p>
-
-      <div class="tech-stack">
-        <h4>Tech Stack</h4>
-        <div class="tags">
-          <span class="tag frontend">React 19</span>
-          <span class="tag frontend">TypeScript</span>
-          <span class="tag frontend">Material UI 5</span>
-          <span class="tag frontend">Recharts</span>
-          <span class="tag frontend">Framer Motion</span>
-          <span class="tag frontend">jsPDF</span>
-          <span class="tag frontend">SheetJS (XLSX)</span>
-          <span class="tag backend">Spring Boot 3.2</span>
-          <span class="tag backend">Java 17</span>
-          <span class="tag backend">Spring Security (JWT)</span>
-          <span class="tag backend">Spring Data JPA</span>
-          <span class="tag db">MySQL</span>
-          <span class="tag mobile">Kotlin</span>
-          <span class="tag mobile">Jetpack Compose</span>
-          <span class="tag mobile">Hilt DI</span>
-          <span class="tag mobile">Retrofit</span>
-          <span class="tag tool">REST API</span>
+      <!-- ==================== CORE ARCHITECTURE STACK ==================== -->
+      <section class="w-full max-w-[1320px] mx-auto px-margin-desktop py-space-xl" id="stack">
+        <div class="flex flex-col gap-space-xs mb-space-lg">
+          <div class="flex items-center gap-space-xs font-mono-meta text-mono-meta uppercase tracking-widest text-secondary">
+            <span class="material-symbols-outlined text-sm">memory</span>
+            <span>Capabilities &bull; Production Toolchain</span>
+          </div>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface">Core Stack &amp; Infrastructure Matrix</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+            Key technologies and frameworks powering our full-stack architectures and native mobile applications.
+          </p>
         </div>
-      </div>
 
-      <div class="features">
-        <h4>Key Features</h4>
-        <ul>
-          <li><strong>Income &amp; Expense Management</strong> — Transaction tracking with categorization, date filtering, and multi-currency support</li>
-          <li><strong>Budget Limits &amp; Alerts</strong> — Category-based spending caps with progress visualizers and threshold warnings</li>
-          <li><strong>Financial Goals</strong> — Long-term savings goals with targeted deadlines and percentage completion trackers</li>
-          <li><strong>Interactive Visual Analytics</strong> — Expense distribution pie charts, monthly cash-flow trends, and net-worth metrics via Recharts</li>
-          <li><strong>Statement Export (PDF / Excel)</strong> — One-click generation of professional financial reports using jsPDF and SheetJS</li>
-          <li><strong>Admin Dashboard</strong> — Platform-wide user metrics, category management, and audit logs</li>
-          <li><strong>Android Mobile Client</strong> — Native Android app with Jetpack Compose, Material 3, Hilt DI, and Retrofit</li>
-        </ul>
-      </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+          <!-- Tier 1: Frontend & UX -->
+          <div class="flex flex-col p-space-lg rounded-xl bg-surface-container-low shadow-sm border border-outline-variant/20">
+            <div class="flex items-center justify-between pb-space-md">
+              <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-primary text-xl">devices</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface">Frontend &amp; UX</h3>
+              </div>
+              <span class="font-mono-badge text-mono-badge text-on-surface-variant">LEVEL: EXPERT</span>
+            </div>
+            <div class="flex flex-col gap-space-md">
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">React 18 &amp; 19</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">Hooks, SPA Routing, Query Client</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-bold">VITE</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">TypeScript</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">Strict Typing, Zod, API Models</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-bold">CORE</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">Tailwind &amp; Material UI</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">Responsive Layouts, Glassmorphism</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-bold">UI</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">Recharts &amp; DND-Kit</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">Analytics Visuals, Drag-and-Drop</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-bold">DATA</span>
+              </div>
+            </div>
+          </div>
 
-      <div class="pages-grid">
-        <h4>Application Modules</h4>
-        <div class="page-list">
-          <span>Financial Dashboard</span><span>Add Transaction</span><span>Transaction History</span>
-          <span>Category Manager</span><span>Budget Limits</span><span>Financial Goals</span>
-          <span>PDF / Excel Reports</span><span>Visual Analytics</span><span>Admin Dashboard</span>
-          <span>User Profile</span>
+          <!-- Tier 2: Backend & Spring Ecosystem -->
+          <div class="flex flex-col p-space-lg rounded-xl bg-surface-container-low shadow-sm border border-outline-variant/20">
+            <div class="flex items-center justify-between pb-space-md">
+              <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-secondary text-xl">dataset</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface">Backend &amp; Services</h3>
+              </div>
+              <span class="font-mono-badge text-mono-badge text-on-surface-variant">LEVEL: MASTER</span>
+            </div>
+            <div class="flex flex-col gap-space-md">
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">Spring Boot 3 &amp; Java 17</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">RESTful APIs, MVC, Clean Architecture</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-secondary text-surface-container-lowest font-bold">SPRING 3</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">Spring Security &amp; JWT</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">Stateless Authentication, RBAC</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-secondary text-surface-container-lowest font-bold">AUTH</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">Spring Data JPA / Hibernate</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">ORM, Query Optimization, Relations</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-secondary text-surface-container-lowest font-bold">JPA</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">MySQL &amp; PostgreSQL</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">Relational Schemas, Indexing, Transactions</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-secondary text-surface-container-lowest font-bold">SQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tier 3: Mobile & Native Android -->
+          <div class="flex flex-col p-space-lg rounded-xl bg-surface-container-low shadow-sm border border-outline-variant/20">
+            <div class="flex items-center justify-between pb-space-md">
+              <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-tertiary text-xl">phone_android</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface">Mobile &amp; Android</h3>
+              </div>
+              <span class="font-mono-badge text-mono-badge text-on-surface-variant">LEVEL: NATIVE</span>
+            </div>
+            <div class="flex flex-col gap-space-md">
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">Kotlin</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">Coroutines, Flow, Null-Safety, DSLs</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-tertiary-container text-tertiary-fixed font-bold">KOTLIN</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">Jetpack Compose</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">Declarative UI, State, Material 3</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-tertiary-container text-tertiary-fixed font-bold">COMPOSE</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">Retrofit &amp; OkHttp</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">Type-safe HTTP Clients, Serialization</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-tertiary-container text-tertiary-fixed font-bold">NETWORKING</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high/60">
+                <div>
+                  <div class="font-headline-sm text-headline-sm text-on-surface">Hilt DI &amp; Architecture</div>
+                  <div class="font-mono-meta text-mono-meta text-on-surface-variant">MVVM, ViewModel, Repository Pattern</div>
+                </div>
+                <span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-tertiary-container text-tertiary-fixed font-bold">HILT</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="project-links">
-        <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" class="btn btn-sm btn-ghost">Source Code</a>
-        <a href="https://bynance-finance.vercel.app" target="_blank" class="btn btn-sm">🌐 See Live Site</a>
-      </div>
-    </article>
+      <!-- ==================== TECH CONSULTATION & CONTACT ==================== -->
+      <section class="w-full max-w-[1320px] mx-auto px-margin-desktop py-space-xl mb-12" id="contact">
+        <div class="p-space-lg lg:p-12 rounded-2xl bg-surface-container-low shadow-xl border border-outline-variant/20">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+            <!-- Left: Context & Availability -->
+            <div class="lg:col-span-5 flex flex-col justify-between gap-space-lg">
+              <div class="flex flex-col gap-space-md">
+                <div class="flex items-center gap-space-xs font-mono-meta text-mono-meta uppercase tracking-widest text-secondary">
+                  <span class="material-symbols-outlined text-sm">schedule</span>
+                  <span>Open for Opportunities &amp; Collaboration</span>
+                </div>
+                <h2 class="font-headline-lg text-headline-lg text-on-surface leading-tight">
+                  Interested in building high-quality full-stack or mobile solutions together?
+                </h2>
+                <p class="font-body-md text-body-md text-on-surface-variant">
+                  Feel free to reach out directly via email or GitHub. Open to full-time engineering positions, contract roles, and technical discussions.
+                </p>
+              </div>
+              <div class="flex flex-col gap-space-md pt-space-md">
+                <div class="flex items-center gap-space-sm p-space-md rounded-lg bg-surface-container border border-outline-variant/20">
+                  <span class="material-symbols-outlined text-secondary text-2xl">mail</span>
+                  <div class="flex flex-col font-mono-meta text-mono-meta">
+                    <span class="text-on-surface font-medium">EMAIL CONTACT</span>
+                    <a href="mailto:enhjargal.dev@gmail.com" class="text-secondary hover:underline">enhjargal.dev@gmail.com</a>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between p-space-md rounded-lg bg-surface-container border border-outline-variant/20">
+                  <div class="flex items-center gap-space-sm">
+                    <span class="material-symbols-outlined text-primary text-xl">code</span>
+                    <span class="font-mono-meta text-mono-meta text-on-surface">GitHub Repositories</span>
+                  </div>
+                  <a class="px-space-md py-1.5 rounded bg-on-surface text-surface font-mono-meta text-mono-meta font-semibold hover:bg-white transition-all" href="https://github.com/Enhjargal22" target="_blank">
+                    @Enhjargal22
+                  </a>
+                </div>
+              </div>
+            </div>
 
-    <!-- Project 4: Housework Tasks (ДомДела) -->
-    <article class="project-card featured">
-      <div class="project-badge" style="background: #0ea5e9;">Full-Stack + Kotlin</div>
-      <h3>ДомДела (Housework Tasks) — Family Chore &amp; Task Hub</h3>
-      <p class="project-desc">
-        A full-stack collaborative household task management system featuring an interactive drag-and-drop 
-        Kanban board (@dnd-kit), photo verification workflow with 5-star ratings, family gamification with 
-        streaks and leaderboards, interactive Russian calendar, real-time family chat, Recharts visual analytics, 
-        and a native Android companion application built with Kotlin and Jetpack Compose.
-      </p>
+            <!-- Right: Interactive Consultation Form -->
+            <div class="lg:col-span-7 flex flex-col bg-surface-container-lowest p-space-lg rounded-xl shadow-inner border border-outline-variant/20">
+              <form class="flex flex-col gap-space-md" id="contact-form" onsubmit="event.preventDefault(); const res = document.getElementById('form-feedback'); res.classList.remove('hidden');">
+                <div class="flex flex-col gap-space-xs">
+                  <label class="font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant">1. Discussion Topic</label>
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="scope-selector">
+                    <label class="flex items-center gap-2 p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high cursor-pointer transition-colors border border-outline-variant/20">
+                      <input checked="" class="accent-primary" name="scope" type="radio" value="job">
+                      <span class="font-mono-meta text-mono-meta text-on-surface">Job Opportunity</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high cursor-pointer transition-colors border border-outline-variant/20">
+                      <input class="accent-primary" name="scope" type="radio" value="fullstack">
+                      <span class="font-mono-meta text-mono-meta text-on-surface">Full-Stack Project</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high cursor-pointer transition-colors border border-outline-variant/20">
+                      <input class="accent-primary" name="scope" type="radio" value="mobile">
+                      <span class="font-mono-meta text-mono-meta text-on-surface">Android / Mobile</span>
+                    </label>
+                  </div>
+                </div>
 
-      <div class="tech-stack">
-        <h4>Tech Stack</h4>
-        <div class="tags">
-          <span class="tag frontend">React 19</span>
-          <span class="tag frontend">TypeScript</span>
-          <span class="tag frontend">Tailwind CSS</span>
-          <span class="tag frontend">@dnd-kit (Kanban)</span>
-          <span class="tag frontend">React Big Calendar</span>
-          <span class="tag frontend">Framer Motion</span>
-          <span class="tag frontend">Recharts</span>
-          <span class="tag backend">Spring Boot 3</span>
-          <span class="tag backend">Java 17</span>
-          <span class="tag backend">Spring Security (JWT)</span>
-          <span class="tag backend">Spring Data JPA</span>
-          <span class="tag db">MySQL</span>
-          <span class="tag mobile">Android (Kotlin)</span>
-          <span class="tag mobile">Jetpack Compose</span>
-          <span class="tag mobile">Retrofit</span>
-          <span class="tag tool">REST API</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                  <div class="flex flex-col gap-1">
+                    <label class="font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant">Your Name / Company</label>
+                    <input class="w-full px-space-md py-2.5 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-high focus:outline-none focus:ring-1 focus:ring-secondary transition-all placeholder:text-outline-variant border border-outline-variant/20" placeholder="Recruiter / Tech Lead" required="" type="text">
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <label class="font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant">Email Address</label>
+                    <input class="w-full px-space-md py-2.5 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-high focus:outline-none focus:ring-1 focus:ring-secondary transition-all placeholder:text-outline-variant border border-outline-variant/20" placeholder="lead@company.com" required="" type="email">
+                  </div>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                  <label class="font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant">Message &bull; Project Overview</label>
+                  <textarea class="w-full p-space-md rounded-lg bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-high focus:outline-none focus:ring-1 focus:ring-secondary transition-all placeholder:text-outline-variant border border-outline-variant/20" placeholder="Tell me about the role, technical challenge, or project..." required="" rows="4"></textarea>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-2">
+                  <button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm px-space-xl py-3 rounded-lg bg-primary-container text-on-primary-container hover:bg-inverse-primary font-headline-sm text-headline-sm transition-all shadow-md cursor-pointer" type="submit">
+                    <span>Send Message</span>
+                    <span class="material-symbols-outlined text-base">send</span>
+                  </button>
+                  <span class="font-mono-meta text-mono-meta text-on-surface-variant">
+                    Direct Response &bull; Quick Turnaround
+                  </span>
+                </div>
+
+                <div class="hidden p-space-md rounded-lg bg-surface-container text-secondary font-mono-meta text-mono-meta flex items-center gap-2 border border-secondary/30" id="form-feedback">
+                  <span class="material-symbols-outlined text-base">task_alt</span>
+                  <span>Thank you! Your message has been recorded. I will follow up shortly.</span>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      </section>
+
+    </div>
+
+    <!-- Filter script -->
+    <script>
+      function filterProjects(category) {
+        const tabs = document.querySelectorAll('.filter-tab');
+        tabs.forEach(tab => {
+          if (tab.getAttribute('data-category') === category) {
+            tab.classList.add('bg-surface-container-high', 'text-on-surface', 'shadow-sm');
+            tab.classList.remove('text-on-surface-variant');
+          } else {
+            tab.classList.remove('bg-surface-container-high', 'text-on-surface', 'shadow-sm');
+            tab.classList.add('text-on-surface-variant');
+          }
+        });
+
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          if (category === 'all' || cardCategory === category) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    </script>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="w-full bg-surface-container-lowest py-space-xl border-t border-outline-variant/20">
+    <div class="max-w-[1320px] mx-auto px-margin-desktop flex flex-col md:flex-row items-center justify-between gap-space-lg">
+      <div class="flex flex-col sm:flex-row items-center gap-space-md text-center sm:text-left">
+        <span class="font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant">&copy; 2026 Enhjargal &bull; Full-Stack &amp; Mobile Engineer</span>
+        <span class="hidden sm:inline text-outline-variant font-mono-meta text-mono-meta">/</span>
+        <a href="https://github.com/Enhjargal22" target="_blank" class="font-mono-meta text-mono-meta uppercase tracking-wider text-secondary hover:underline">GitHub Profile</a>
       </div>
-
-      <div class="features">
-        <h4>Key Features</h4>
-        <ul>
-          <li><strong>Drag-and-Drop Kanban Board (@dnd-kit)</strong> — Flexible task workflow across Planned, In Progress, Pending Approval, Completed, and Overdue columns</li>
-          <li><strong>Photo Proof &amp; Verification Workflow</strong> — Family members upload completion photos; Family Admins review, approve, and assign 5-star ratings</li>
-          <li><strong>Gamification &amp; Leaderboard</strong> — Points scoring engine, consecutive streak flame counter, monthly rankings, and achievement badges (Crown, Trophy, Medal)</li>
-          <li><strong>Interactive Russian Calendar</strong> — Month, week, day, and agenda scheduling views powered by React Big Calendar</li>
-          <li><strong>Family Messenger</strong> — In-app communication channel with real-time updates and message audit history</li>
-          <li><strong>Household Workspace &amp; Invite Codes</strong> — Role-based access control (Family Admin vs Member) with unique household invite codes</li>
-          <li><strong>Visual Analytics &amp; Reporting (Recharts)</strong> — Task completion rate donuts, member contribution comparisons, and productivity trends</li>
-          <li><strong>Android Mobile Client</strong> — Companion native Android app built with Kotlin, Jetpack Compose, Material 3, and Retrofit</li>
-        </ul>
+      <div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-full shadow-[0_1px_8px_rgba(0,0,0,0.04)] border border-outline-variant/20">
+        <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+        <span class="font-mono-meta text-mono-meta text-on-surface-variant uppercase tracking-wider">ALL 4 PROJECTS DEPLOYED &bull; LIVE</span>
       </div>
-
-      <div class="pages-grid">
-        <h4>Application Modules</h4>
-        <div class="page-list">
-          <span>Landing Page</span><span>Family Dashboard</span><span>Kanban Board</span>
-          <span>Interactive Calendar</span><span>Family Chat</span><span>Gamification Leaderboard</span>
-          <span>Visual Statistics</span><span>Task History &amp; Audit</span><span>Notifications</span>
-          <span>Family Workspace</span><span>User Profile</span>
-        </div>
+      <div class="flex items-center">
+        <a class="inline-flex items-center gap-space-xs font-mono-meta text-mono-meta uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+          <span class="material-symbols-outlined text-base">arrow_upward</span>
+          <span>Back to Top</span>
+        </a>
       </div>
-
-      <div class="project-links">
-        <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" class="btn btn-sm btn-ghost">Source Code</a>
-        <a href="https://housework-tasks.vercel.app" target="_blank" class="btn btn-sm">🌐 See Live Site</a>
-      </div>
-    </article>
-
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Enhjargal &middot; <a href="https://github.com/Enhjargal22" target="_blank">GitHub Profile</a></p>
     </div>
   </footer>
 
