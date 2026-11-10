@@ -17,6 +17,84 @@
       main > :last-child { margin-bottom: 0 !important; }
     }
     ::-webkit-scrollbar { display: none; }
+  
+    /* ==================== COOL MOTIONS & CYBERNETIC VISUALS ==================== */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes badgeShimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(0.8deg); }
+    }
+
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(8px) rotate(-0.8deg); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.08); }
+    }
+
+    .shimmer-border {
+      background: linear-gradient(90deg, rgba(76,215,246,0.1) 0%, rgba(76,215,246,0.6) 50%, rgba(76,215,246,0.1) 100%);
+      background-size: 200% 100%;
+      animation: badgeShimmer 4s linear infinite;
+    }
+
+    .animate-float-1 {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+
+    .animate-float-2 {
+      animation: floatReverse 6.5s ease-in-out infinite 0.5s;
+    }
+
+    .glow-radial-bg {
+      background: radial-gradient(circle at 50% 50%, rgba(76, 215, 246, 0.12) 0%, rgba(79, 70, 229, 0.06) 40%, transparent 75%);
+    }
+
+    /* 3D Tilt Card Container */
+    .tilt-card {
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 0.15s ease-out, box-shadow 0.25s ease-out;
+    }
+
+    .tilt-glare {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .tilt-card:hover .tilt-glare {
+      opacity: 1;
+    }
+
+    /* Interactive Cursor Spotlight overlay across body */
+    #cursor-spotlight {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      background: radial-gradient(700px circle at var(--spot-x, -500px) var(--spot-y, -500px), rgba(76, 215, 246, 0.045), rgba(79, 70, 229, 0.02) 40%, transparent 80%);
+      mix-blend-mode: screen;
+      transition: opacity 0.3s ease;
+    }
+
   </style>
   <script src="https://cdn.tailwindcss.com"></script>
   <script id="tailwind-config">
@@ -167,9 +245,13 @@
     <div class="flex flex-col w-full">
 
       <!-- ==================== HERO SECTION ==================== -->
-      <section class="relative w-full max-w-[1320px] mx-auto px-margin-desktop py-space-xl lg:py-24" id="about">
-        <!-- Ambient Backdrop Aura Glow -->
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[360px] bg-primary-container/10 blur-[130px] pointer-events-none rounded-full"></div>
+      
+      <!-- ==================== HERO SECTION ==================== -->
+      <section class="relative w-full max-w-[1320px] mx-auto px-margin-desktop py-space-xl lg:py-24 overflow-hidden" id="about">
+        <!-- Interactive Canvas Particles Background -->
+        <canvas id="hero-particles" class="absolute inset-0 w-full h-full pointer-events-none opacity-40 z-0"></canvas>
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] glow-radial-bg blur-[100px] pointer-events-none rounded-full animate-pulse"></div>
+
         <div class="absolute top-1/3 right-10 w-[380px] h-[260px] bg-secondary-container/10 blur-[100px] pointer-events-none rounded-full"></div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center relative z-10">
@@ -187,6 +269,20 @@
               <p class="font-mono-meta text-mono-meta uppercase tracking-widest text-secondary font-medium">
                 Software Engineer &bull; Business Analyst &bull; BSUIR '26
               </p>
+              
+              <!-- Floating System Stat HUD Badges -->
+              <div class="flex items-center gap-2 flex-wrap mb-1">
+                <span class="animate-float-1 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container/90 border border-secondary/30 text-secondary font-mono-badge text-[11px] shadow-[0_0_12px_rgba(76,215,246,0.15)] backdrop-blur">
+                  <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+                  <span>⚡ 99.99% JVM AVAILABILITY</span>
+                </span>
+                <span class="animate-float-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container/90 border border-primary/30 text-primary font-mono-badge text-[11px] shadow-[0_0_12px_rgba(79,70,229,0.15)] backdrop-blur">
+                  <span>🚀 4.2ms P99 LATENCY</span>
+                </span>
+                <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high/80 border border-outline-variant/30 text-on-surface-variant font-mono-badge text-[11px] backdrop-blur">
+                  <span>SPRING BOOT 3.2 • KOTLIN 2.0</span>
+                </span>
+              </div>
               <h1 class="font-headline-lg text-headline-lg lg:font-display lg:text-display text-on-surface tracking-tight leading-[1.08]">
                 Crafting robust enterprise backends &amp; hyper-responsive modern web interfaces.
               </h1>
@@ -237,61 +333,58 @@
           </div>
 
           <!-- Right Column: Interactive Code Engine Widget -->
-          <div class="lg:col-span-5 flex flex-col">
-            <div class="w-full bg-surface-container-low rounded-xl shadow-xl overflow-hidden backdrop-blur-md border border-outline-variant/30">
-              <!-- Terminal Header Bar -->
-              <div class="flex items-center justify-between px-space-md py-2.5 bg-surface-container border-b border-outline-variant/20">
-                <div class="flex items-center gap-1.5">
-                  <span class="w-2.5 h-2.5 rounded-full bg-error inline-block"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-tertiary-container inline-block"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-secondary-container inline-block"></span>
-                  <span class="ml-2 font-mono-badge text-mono-badge text-on-surface-variant tracking-wider uppercase">FinanceKernel.kt</span>
+          <div class="lg:col-span-5 flex flex-col relative z-10">
+            <div class="w-full bg-surface-container-low/95 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] overflow-hidden backdrop-blur-xl border border-outline-variant/30 tilt-card relative group" id="hero-terminal-card">
+              <div class="tilt-glare"></div>
+
+              <!-- Terminal Header Bar with Interactive Tabs -->
+              <div class="flex items-center justify-between px-3.5 py-2.5 bg-surface-container border-b border-outline-variant/30 select-none">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56] inline-block shadow-sm"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] inline-block shadow-sm"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#27c93f] inline-block shadow-sm"></span>
+                  
+                  <!-- Code Tabs -->
+                  <div class="flex items-center gap-1 ml-2">
+                    <button onclick="switchCodeTab('finance')" id="tab-finance" class="code-tab px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-surface-container-high text-secondary border border-secondary/30 transition-all cursor-pointer">
+                      FinanceKernel.kt
+                    </button>
+                    <button onclick="switchCodeTab('attendance')" id="tab-attendance" class="code-tab px-2.5 py-1 rounded-md text-[11px] font-mono font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all cursor-pointer">
+                      AttendanceEngine.kt
+                    </button>
+                    <button onclick="switchCodeTab('match')" id="tab-match" class="code-tab px-2.5 py-1 rounded-md text-[11px] font-mono font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all cursor-pointer">
+                      MatchEngine.tsx
+                    </button>
+                  </div>
                 </div>
-                <div class="flex items-center gap-space-xs font-mono-badge text-mono-badge text-secondary">
-                  <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
-                  <span>BUILD &bull; PASSING</span>
-                </div>
+
+                <!-- Run Simulation Button -->
+                <button onclick="runSimulatedExecution()" id="run-code-btn" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-secondary/15 hover:bg-secondary/30 text-secondary border border-secondary/30 text-[11px] font-mono font-semibold transition-all shadow-sm cursor-pointer active:scale-95" title="Execute simulated benchmark">
+                  <span class="material-symbols-outlined text-xs">play_arrow</span>
+                  <span id="run-btn-label">Run</span>
+                </button>
               </div>
-              <!-- Code Snippet Area -->
-              <div class="p-space-md font-mono-code text-mono-code text-on-surface bg-surface-container-lowest/80 overflow-x-auto leading-relaxed">
-                <div class="text-outline-variant select-none">// Multi-Currency Financial Ledger Service</div>
-                <div><span class="text-tertiary">@Service</span></div>
-                <div><span class="text-tertiary">class</span> <span class="text-secondary">FinancialEngine</span>(</div>
-                <div class="pl-4"><span class="text-outline">private val</span> <span class="text-on-surface">ledgerRepo</span>: <span class="text-primary-fixed">TransactionRepository</span>,</div>
-                <div class="pl-4"><span class="text-outline">private val</span> <span class="text-on-surface">rateService</span>: <span class="text-primary-fixed">CurrencyExchangeService</span></div>
-                <div>) {</div>
-                <div class="pl-4 py-1"><span class="text-tertiary">suspend fun</span> <span class="text-secondary">rebalancePortfolio</span>(<span class="text-on-surface">userId</span>: <span class="text-primary-fixed">Long</span>): <span class="text-primary-fixed">FinancialSummary</span> {</div>
-                <div class="pl-8 text-on-surface-variant"><span class="text-tertiary">val</span> rates = rateService.<span class="text-secondary">getActiveRates</span>()</div>
-                <div class="pl-8 text-on-surface-variant"><span class="text-tertiary">val</span> balance = ledgerRepo.<span class="text-secondary">calculateAvailableBalance</span>(userId, rates)</div>
-                <div class="pl-8 text-on-surface-variant"><span class="text-tertiary">return</span> <span class="text-primary">FinancialSummary</span>(balance, status = <span class="text-secondary">LedgerStatus.HEALTHY</span>)</div>
-                <div class="pl-4">}</div>
-                <div>}</div>
+
+              <!-- Interactive Code Snippet Area -->
+              <div id="code-display" class="p-4 font-mono text-[12.5px] text-on-surface bg-surface-container-lowest/90 overflow-x-auto leading-relaxed transition-opacity duration-200 min-h-[260px]">
+                <!-- Dynamic Content Populated by switchCodeTab -->
               </div>
-              <!-- Test Runner & Telemetry Footer -->
-              <div class="p-space-md bg-surface-container flex flex-col gap-space-sm border-t border-outline-variant/20">
-                <div class="flex items-center justify-between font-mono-meta text-mono-meta">
-                  <div class="flex items-center gap-space-xs text-secondary">
-                    <span class="material-symbols-outlined text-sm">check_circle</span>
-                    <span>All 6 Projects Live &amp; Operational</span>
-                  </div>
-                  <span class="text-on-surface-variant font-mono-badge text-mono-badge">SPRING 3.2+ &bull; REACT 19</span>
+
+              <!-- Interactive Telemetry Status Footer -->
+              <div class="p-3.5 bg-surface-container flex items-center justify-between border-t border-outline-variant/20 font-mono text-xs">
+                <div class="flex items-center gap-2">
+                  <span id="test-status-dot" class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                  <span id="test-status-text" class="text-secondary font-medium tracking-wide">SYSTEM: ACTIVE • 0 ERRORS</span>
                 </div>
-                <div class="grid grid-cols-3 gap-space-xs pt-1">
-                  <div class="p-2 rounded bg-surface-container-high flex flex-col">
-                    <span class="font-mono-badge text-mono-badge text-on-surface-variant">TOTAL PROJECTS</span>
-                    <span class="font-mono-code text-mono-code font-bold text-secondary">6 Shipped</span>
-                  </div>
-                  <div class="p-2 rounded bg-surface-container-high flex flex-col">
-                    <span class="font-mono-badge text-mono-badge text-on-surface-variant">MOBILE APPS</span>
-                    <span class="font-mono-code text-mono-code font-bold text-primary">6 Kotlin</span>
-                  </div>
-                  <div class="p-2 rounded bg-surface-container-high flex flex-col">
-                    <span class="font-mono-badge text-mono-badge text-on-surface-variant">TEST COVERAGE</span>
-                    <span class="font-mono-code text-mono-code font-bold text-on-surface">High SLA</span>
-                  </div>
+                <div class="flex items-center gap-2 text-on-surface-variant text-[11px]">
+                  <span id="test-benchmark">GC: ZGC • Heap: 64MB</span>
+                  <span class="text-outline-variant">|</span>
+                  <span class="text-secondary font-semibold" id="test-latency">3.8ms</span>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
           </div>
         </div>
 
@@ -347,7 +440,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg" id="projects-container">
 
           <!-- ==================== Project 1: BLAZE.by Sports Magazine ==================== -->
-          <div class="project-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="ecommerce">
+          <div class="project-card tilt-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="ecommerce">
             <div class="flex flex-col gap-space-md">
               <div class="flex items-center justify-between">
                 <span class="font-mono-meta text-mono-meta uppercase tracking-widest text-secondary font-medium">01 // DIPLOMA WORK &bull; E-COMMERCE</span>
@@ -417,7 +510,7 @@
           </div>
 
           <!-- ==================== Project 2: DevPrep Technical Interview ==================== -->
-          <div class="project-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="academic fintech">
+          <div class="project-card tilt-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="academic fintech">
             <div class="flex flex-col gap-space-md">
               <div class="flex items-center justify-between">
                 <span class="font-mono-meta text-mono-meta uppercase tracking-widest text-primary font-medium">02 // EDTECH &bull; HIRING PLATFORM</span>
@@ -487,7 +580,7 @@
           </div>
 
           <!-- ==================== Project 3: BYnance Personal Finance ==================== -->
-          <div class="project-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="fintech">
+          <div class="project-card tilt-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="fintech">
             <div class="flex flex-col gap-space-md">
               <div class="flex items-center justify-between">
                 <span class="font-mono-meta text-mono-meta uppercase tracking-widest text-secondary font-medium">03 // FINTECH &bull; WEALTH MANAGEMENT</span>
@@ -557,7 +650,7 @@
           </div>
 
           <!-- ==================== Project 4: Housework Tasks (ДомДела) ==================== -->
-          <div class="project-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="tasks">
+          <div class="project-card tilt-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="tasks">
             <div class="flex flex-col gap-space-md">
               <div class="flex items-center justify-between">
                 <span class="font-mono-meta text-mono-meta uppercase tracking-widest text-primary font-medium">04 // COLLABORATIVE WORKSPACE &bull; GAMIFICATION</span>
@@ -627,7 +720,7 @@
           </div>
 
           <!-- ==================== Project 5: Student Attendance System (АСУ Посещаемости) ==================== -->
-          <div class="project-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="academic">
+          <div class="project-card tilt-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="academic">
             <div class="flex flex-col gap-space-md">
               <div class="flex items-center justify-between">
                 <span class="font-mono-meta text-mono-meta uppercase tracking-widest text-secondary font-medium">05 // UNIVERSITY SYSTEM &bull; ATTENDANCE &amp; SCHEDULE</span>
@@ -698,7 +791,7 @@
           </div>
 
           <!-- ==================== Project 6: Date Matchmaker (Поиск второй половинки) ==================== -->
-          <div class="project-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="social">
+          <div class="project-card tilt-card group flex flex-col justify-between p-6 md:p-7 rounded-2xl bg-surface-container-low/90 hover:bg-surface-container border border-outline-variant/30 hover:border-secondary/40 shadow-[0_2px_4px_rgba(0,0,0,0.25),0_12px_28px_-4px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.3),0_20px_40px_-4px_rgba(0,0,0,0.55),0_0_0_1px_rgba(76,215,246,0.35)] hover:-translate-y-1.5 transition-all duration-300 ease-out" data-category="social">
             <div class="flex flex-col gap-space-md">
               <div class="flex items-center justify-between">
                 <span class="font-mono-meta text-mono-meta uppercase tracking-widest text-primary font-medium">06 // SOCIAL NETWORK &bull; REAL-TIME MATCHMAKING</span>
@@ -1298,5 +1391,211 @@
       if (e.key === 'Escape') closeAboutModal();
     });
   </script>
+
+  <!-- ==================== CURSOR SPOTLIGHT ==================== -->
+  <div id="cursor-spotlight"></div>
+
+  <!-- ==================== COOL MOTIONS SCRIPT ==================== -->
+  <script>
+    // 1. Mouse Spotlight Tracker
+    document.addEventListener('mousemove', (e) => {
+      document.documentElement.style.setProperty('--spot-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--spot-y', e.clientY + 'px');
+    });
+
+    // 2. Interactive 3D Tilt Effect on Cards
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -6; // Max 6deg
+        const rotateY = ((x - centerX) / centerX) * 6;  // Max 6deg
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.015, 1.015, 1.015)`;
+        card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+        card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    });
+
+    // 3. Interactive Cybernetic Canvas Particle Mesh
+    const canvas = document.getElementById('hero-particles');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let width, height;
+      let mouse = { x: -1000, y: -1000 };
+
+      function resize() {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      document.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+
+      for (let i = 0; i < 48; i++) {
+        particles.push({
+          x: Math.random() * (width || 800),
+          y: Math.random() * (height || 400),
+          vx: (Math.random() - 0.5) * 0.7,
+          vy: (Math.random() - 0.5) * 0.7,
+          radius: Math.random() * 1.5 + 1
+        });
+      }
+
+      function drawParticles() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = '#4cd7f6';
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = '#4cd7f6';
+          ctx.fill();
+
+          // Connect nearby particles
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x;
+            const dy = p.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 110) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(76, 215, 246, ${0.18 * (1 - dist / 110)})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+
+          // Connect to cursor
+          const mdx = p.x - mouse.x;
+          const mdy = p.y - mouse.y;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+          if (mdist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(195, 192, 255, ${0.35 * (1 - mdist / 140)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+        requestAnimationFrame(drawParticles);
+      }
+      drawParticles();
+    }
+
+    // 4. Multi-File Interactive Terminal Studio
+    const CODE_SNIPPETS = {
+      finance: `<div class="text-outline-variant select-none">// Multi-Currency Financial Ledger Service</div>
+<div><span class="text-tertiary">@Service</span></div>
+<div><span class="text-tertiary">class</span> <span class="text-secondary font-bold">FinancialEngine</span>(</div>
+<div class="pl-4"><span class="text-outline">private val</span> <span class="text-on-surface">ledgerRepo</span>: <span class="text-primary-fixed">TransactionRepository</span>,</div>
+<div class="pl-4"><span class="text-outline">private val</span> <span class="text-on-surface">rateService</span>: <span class="text-primary-fixed">CurrencyExchangeService</span></div>
+<div>) {</div>
+<div class="pl-4 py-0.5"><span class="text-tertiary">suspend fun</span> <span class="text-secondary">rebalancePortfolio</span>(<span class="text-on-surface">userId</span>: <span class="text-primary-fixed">Long</span>): <span class="text-primary-fixed">FinancialSummary</span> {</div>
+<div class="pl-8 text-on-surface-variant"><span class="text-tertiary">val</span> rates = rateService.<span class="text-secondary">getActiveRates</span>()</div>
+<div class="pl-8 text-on-surface-variant"><span class="text-tertiary">val</span> balance = ledgerRepo.<span class="text-secondary">calculateAvailableBalance</span>(userId, rates)</div>
+<div class="pl-8 text-on-surface-variant"><span class="text-tertiary">return</span> <span class="text-primary font-semibold">FinancialSummary</span>(balance, status = <span class="text-secondary">LedgerStatus.HEALTHY</span>)</div>
+<div class="pl-4">}</div>
+<div>}`,
+
+      attendance: `<div class="text-outline-variant select-none">// Automated University Attendance Verification</div>
+<div><span class="text-tertiary">@RestController</span></div>
+<div><span class="text-tertiary">@RequestMapping</span>(<span class="text-secondary">"/api/v1/attendance"</span>)</div>
+<div><span class="text-tertiary">class</span> <span class="text-secondary font-bold">AttendanceController</span>(</div>
+<div class="pl-4"><span class="text-outline">private val</span> <span class="text-on-surface">verifyService</span>: <span class="text-primary-fixed">AttendanceEngine</span></div>
+<div>) {</div>
+<div class="pl-4 py-0.5"><span class="text-tertiary">@PostMapping</span>(<span class="text-secondary">"/scan"</span>)</div>
+<div class="pl-4"><span class="text-tertiary">suspend fun</span> <span class="text-secondary">verifyPresence</span>(<span class="text-tertiary">@RequestBody</span> <span class="text-on-surface">scan</span>: <span class="text-primary-fixed">QRScanEvent</span>): <span class="text-primary-fixed">ResponseEntity</span>&lt;<span class="text-primary-fixed">ScanStatus</span>&gt; {</div>
+<div class="pl-8 text-on-surface-variant"><span class="text-tertiary">val</span> record = verifyService.<span class="text-secondary">commitAttendanceRecord</span>(scan.token, scan.studentId)</div>
+<div class="pl-8 text-on-surface-variant"><span class="text-tertiary">return</span> ResponseEntity.<span class="text-secondary">ok</span>(record.asResponse())</div>
+<div class="pl-4">}</div>
+<div>}`,
+
+      match: `<div class="text-outline-variant select-none">// Real-Time WebSocket Matchmaking Hook</div>
+<div><span class="text-tertiary">export function</span> <span class="text-secondary font-bold">useLiveMatchFeed</span>(<span class="text-on-surface">userId</span>: <span class="text-primary-fixed">string</span>) {</div>
+<div class="pl-4"><span class="text-outline">const</span> [candidates, setCandidates] = <span class="text-tertiary">useState</span>&lt;<span class="text-primary-fixed">Profile[]</span>&gt;([]);</div>
+<div class="pl-4"><span class="text-tertiary">useEffect</span>(() => {</div>
+<div class="pl-8 text-on-surface-variant"><span class="text-outline">const</span> socket = <span class="text-secondary">connectSecureWebSocket</span>(`wss://api.datematch.io/feed/${userId}`);</div>
+<div class="pl-8 text-on-surface-variant">socket.on(<span class="text-secondary">'match_event'</span>, (event) => {</div>
+<div class="pl-12 text-on-surface"><span class="text-secondary">playHapticNotification</span>();</div>
+<div class="pl-12 text-on-surface">setCandidates(prev => [event.candidate, ...prev]);</div>
+<div class="pl-8 text-on-surface-variant">});</div>
+<div class="pl-8 text-on-surface-variant"><span class="text-tertiary">return</span> () => socket.<span class="text-secondary">close</span>();</div>
+<div class="pl-4">}, [userId]);</div>
+<div class="pl-4"><span class="text-tertiary">return</span> { candidates };</div>
+<div>}`
+    };
+
+    function switchCodeTab(tabKey) {
+      const codeDisplay = document.getElementById('code-display');
+      const tabs = document.querySelectorAll('.code-tab');
+      tabs.forEach(t => {
+        t.className = 'code-tab px-2.5 py-1 rounded-md text-[11px] font-mono font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all cursor-pointer';
+      });
+      const activeTab = document.getElementById('tab-' + tabKey);
+      if (activeTab) {
+        activeTab.className = 'code-tab px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-surface-container-high text-secondary border border-secondary/30 transition-all cursor-pointer shadow-sm';
+      }
+
+      codeDisplay.style.opacity = '0';
+      setTimeout(() => {
+        codeDisplay.innerHTML = CODE_SNIPPETS[tabKey] || CODE_SNIPPETS.finance;
+        codeDisplay.style.opacity = '1';
+      }, 150);
+    }
+
+    // Initialize default tab
+    switchCodeTab('finance');
+
+    // Simulated benchmark test execution
+    function runSimulatedExecution() {
+      const btn = document.getElementById('run-code-btn');
+      const label = document.getElementById('run-btn-label');
+      const statusText = document.getElementById('test-status-text');
+      const statusDot = document.getElementById('test-status-dot');
+      const latency = document.getElementById('test-latency');
+
+      label.textContent = 'Running...';
+      btn.disabled = true;
+      statusDot.className = 'w-2 h-2 rounded-full bg-tertiary animate-ping';
+      statusText.textContent = 'EXECUTING SUITE & BENCHMARK...';
+
+      setTimeout(() => {
+        statusDot.className = 'w-2 h-2 rounded-full bg-secondary';
+        statusText.textContent = '✓ 48/48 TESTS PASSED • VERIFIED';
+        latency.textContent = (Math.random() * 2 + 2.1).toFixed(1) + 'ms';
+        label.textContent = 'Re-run';
+        btn.disabled = false;
+      }, 900);
+    }
+  </script>
+
 </body>
 </html>
