@@ -359,7 +359,7 @@ const htmlContent = `<!DOCTYPE html>
 
           <!-- Academic & Professional Description -->
           <p class="text-neutral-300 text-sm sm:text-base leading-relaxed max-w-xl" data-i18n="hero_description">
-            Graduating from <strong class="text-white font-medium">BSUIR</strong> in <span class="text-accent-cyan font-mono font-semibold">June 2026</span> as a certified <span class="text-neutral-100">Programmer &amp; Business Analyst</span> (<span class="font-mono text-xs text-neutral-400">Программист и бизнес-аналитик</span>). Specialized in production JVM microservices (<span class="text-neutral-100">Spring Boot 3, Kotlin, Java 21 LTS</span>), transactional PostgreSQL databases, and high-craft client interfaces with <span class="text-neutral-100">React 19, TypeScript</span>, and <span class="text-neutral-100">Android Jetpack Compose</span>.
+            Graduated from <strong class="text-white font-medium">BSUIR</strong> in <span class="text-accent-cyan font-mono font-semibold">June 2026</span> as a certified <span class="text-neutral-100">Programmer &amp; Business Analyst</span> (<span class="font-mono text-xs text-neutral-400">Программист и бизнес-аналитик</span>). Specialized in production JVM microservices (<span class="text-neutral-100">Spring Boot 3, Kotlin, Java 21 LTS</span>), transactional PostgreSQL databases, and high-craft client interfaces with <span class="text-neutral-100">React 19, TypeScript</span>, and <span class="text-neutral-100">Android Jetpack Compose</span>.
           </p>
 
           <!-- Live Engineering Stat Chips -->
@@ -1452,7 +1452,7 @@ const htmlContent = `<!DOCTYPE html>
         hero_title_p1: "Architecting",
         hero_title_highlight: "distributed backends",
         hero_title_p2: "and zero-friction web apps.",
-        hero_description: "Graduating from BSUIR in June 2026 as a certified Programmer & Business Analyst (Программист и бизнес-аналитик). Specialized in production JVM microservices (Spring Boot 3, Kotlin, Java 21 LTS), transactional PostgreSQL databases, and high-craft client interfaces with React 19, TypeScript, and Android Jetpack Compose.",
+        hero_description: "Graduated from BSUIR in June 2026 as a certified Programmer & Business Analyst (Программист и бизнес-аналитик). Specialized in production JVM microservices (Spring Boot 3, Kotlin, Java 21 LTS), transactional PostgreSQL databases, and high-craft client interfaces with React 19, TypeScript, and Android Jetpack Compose.",
         stat_apps: "Production Apps",
         stat_apps_val: "6 Deployed",
         stat_arch: "Architecture",
@@ -1560,7 +1560,7 @@ const htmlContent = `<!DOCTYPE html>
         hero_title_p1: "Архитектура",
         hero_title_highlight: "распределенных систем",
         hero_title_p2: "и быстрых веб-приложений.",
-        hero_description: "Выпускник БГУИР в июне 2026 года по специальности «Программист и бизнес-аналитик». Специализируюсь на создании высокопроизводительных микросервисов на JVM (Spring Boot 3, Kotlin, Java 21 LTS), транзакционных баз данных PostgreSQL и современных веб-интерфейсов на React 19, TypeScript и Android Jetpack Compose.",
+        hero_description: "Окончил БГУИР в июне 2026 года по специальности «Программист и бизнес-аналитик». Специализируюсь на создании высокопроизводительных микросервисов на JVM (Spring Boot 3, Kotlin, Java 21 LTS), транзакционных баз данных PostgreSQL и современных веб-интерфейсов на React 19, TypeScript и Android Jetpack Compose.",
         stat_apps: "Развернутые системы",
         stat_apps_val: "6 Проектов",
         stat_arch: "Архитектура",
@@ -1668,7 +1668,7 @@ const htmlContent = `<!DOCTYPE html>
         hero_title_p1: "Найдвартай",
         hero_title_highlight: "тархмал системүүд",
         hero_title_p2: "болон өндөр хурдтай веб шийдлүүд.",
-        hero_description: "2026 оны 6-р сард БГУИР (Беларусийн Улсын Мэдээлэл Зүй, Радиоэлектроникийн Их Сургууль)-ийг «Программист ба бизнес-аналитик» мэргэжлээр төгсөнө. Өндөр ачаалал даах JVM микросервис (Spring Boot 3, Kotlin, Java 21 LTS), найдвартай PostgreSQL өгөгдлийн сан, болон React 19, TypeScript, Android Jetpack Compose технологиор систем бүтээн хөгжүүлдэг.",
+        hero_description: "2026 оны 6-р сард БГУИР (Беларусийн Улсын Мэдээлэл Зүй, Радиоэлектроникийн Их Сургууль)-ийг «Программист ба бизнес-аналитик» мэргэжлээр төгссөн. Өндөр ачаалал даах JVM микросервис (Spring Boot 3, Kotlin, Java 21 LTS), найдвартай PostgreSQL өгөгдлийн сан, болон React 19, TypeScript, Android Jetpack Compose технологиор систем бүтээн хөгжүүлдэг.",
         stat_apps: "Бэлэн төслүүд",
         stat_apps_val: "6 Систем",
         stat_arch: "Архитектур",
@@ -1751,7 +1751,7 @@ const htmlContent = `<!DOCTYPE html>
         modal_spec: "МЭРГЭЖЛИЙН КОД:",
         modal_qual: "МЭРГЭЖИЛ:",
         modal_qual_val: "Программист ба Бизнес-аналитик",
-        modal_date: "ТӨГСӨХ ОН САР:",
+        modal_date: "ТӨГССӨН ОН САР:",
         modal_date_val: "2026 оны 6-р сар",
         modal_defense: "ДИПЛОМЫН ХАМГААЛАЛТ:",
         modal_defense_val: "Онц / Хамгаалсан",
