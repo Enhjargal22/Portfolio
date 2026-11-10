@@ -67,12 +67,10 @@
       }
     }
 
-    /* Film grain background overlay */
     .bg-grain {
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
     }
 
-    /* Engineering drafting grid lines */
     .blueprint-grid {
       background-size: 40px 40px;
       background-image: 
@@ -80,7 +78,6 @@
         linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
     }
 
-    /* Top Scroll Progress Laser Bar */
     #scroll-progress {
       position: fixed;
       top: 0;
@@ -94,7 +91,6 @@
       transition: width 0.08s ease-out;
     }
 
-    /* Dynamic Global Spotlight Tracker */
     #cursor-spotlight {
       pointer-events: none;
       position: fixed;
@@ -104,7 +100,6 @@
       mix-blend-mode: screen;
     }
 
-    /* Senior Craft Card Spotlight Borders */
     .spotlight-card {
       position: relative;
       background: #0D1117;
@@ -152,7 +147,6 @@
       opacity: 1;
     }
 
-    /* Better UI: Press scale */
     .btn-tactile {
       transition: transform 150ms cubic-bezier(0.2, 0, 0, 1), background-color 150ms ease, box-shadow 150ms ease;
     }
@@ -209,7 +203,6 @@
       to { background-position: 200% center; }
     }
 
-    /* Floating mission control bar with smooth scroll appearance */
     #floating-control-bar {
       transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1), transform 0.3s cubic-bezier(0.2, 0, 0, 1);
     }
@@ -248,28 +241,54 @@
             <span class="font-mono text-xs md:text-sm font-bold uppercase tracking-[0.16em] text-white group-hover:text-accent-cyan transition-colors">ENHJARGAL.DEV</span>
             <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan animate-pulse"></span>
           </div>
-          <span class="font-mono text-[9.5px] md:text-[10px] text-neutral-400">BSUIR '26 // SYSTEMS ARCHITECT</span>
+          <span class="font-mono text-[9.5px] md:text-[10px] text-neutral-400" data-i18n="nav_role">BSUIR '26 // SYSTEMS ARCHITECT</span>
         </div>
       </a>
 
       <!-- Center Nav Links -->
       <nav class="hidden lg:flex items-center gap-7 font-mono text-xs uppercase tracking-wider text-neutral-400">
         <a href="#about" onclick="openAboutModal(event)" class="hover:text-white transition-colors cursor-pointer flex items-center gap-1 group">
-          <span class="text-neutral-500 group-hover:text-accent-cyan transition-colors">/</span>About
+          <span class="text-neutral-500 group-hover:text-accent-cyan transition-colors">/</span><span data-i18n="nav_about">About</span>
         </a>
         <a href="#projects" class="hover:text-white transition-colors flex items-center gap-1 group">
-          <span class="text-neutral-500 group-hover:text-accent-cyan transition-colors">/</span>Projects
+          <span class="text-neutral-500 group-hover:text-accent-cyan transition-colors">/</span><span data-i18n="nav_projects">Projects</span>
         </a>
         <a href="#stack" class="hover:text-white transition-colors flex items-center gap-1 group">
-          <span class="text-neutral-500 group-hover:text-accent-cyan transition-colors">/</span>Stack
+          <span class="text-neutral-500 group-hover:text-accent-cyan transition-colors">/</span><span data-i18n="nav_stack">Stack</span>
         </a>
         <a href="#contact" class="hover:text-white transition-colors flex items-center gap-1 group">
-          <span class="text-neutral-500 group-hover:text-accent-cyan transition-colors">/</span>Contact
+          <span class="text-neutral-500 group-hover:text-accent-cyan transition-colors">/</span><span data-i18n="nav_contact">Contact</span>
         </a>
       </nav>
 
       <!-- Action Utilities & Clean Fast Triggers -->
       <div class="flex items-center gap-2.5 shrink-0">
+        
+        <!-- Language Switcher Dropdown in Navbar -->
+        <div class="relative" id="lang-dropdown-wrapper">
+          <button onclick="toggleLangDropdown(event)" id="lang-btn" class="btn-tactile flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-elevated text-neutral-200 hover:text-accent-cyan border border-white/[0.1] font-mono text-xs cursor-pointer shadow-sm">
+            <span class="material-symbols-outlined text-sm text-accent-cyan">language</span>
+            <span id="current-lang-label" class="font-bold text-[11px]">EN</span>
+            <span class="material-symbols-outlined text-xs text-neutral-400">expand_more</span>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div id="lang-menu" class="absolute right-0 mt-2 w-40 rounded-xl bg-surface-card border border-white/[0.12] shadow-2xl p-1.5 space-y-1 font-mono text-xs z-50 backdrop-blur-2xl" style="display:none;">
+            <button onclick="selectLanguage('en')" class="lang-opt w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-surface-elevated text-neutral-300 hover:text-white transition-colors cursor-pointer text-left" data-lang="en">
+              <span class="flex items-center gap-2"><span>🇺🇸</span><span>English</span></span>
+              <span class="check-icon text-accent-cyan font-bold text-xs">✓</span>
+            </button>
+            <button onclick="selectLanguage('ru')" class="lang-opt w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-surface-elevated text-neutral-300 hover:text-white transition-colors cursor-pointer text-left" data-lang="ru">
+              <span class="flex items-center gap-2"><span>🇷🇺</span><span>Русский</span></span>
+              <span class="check-icon text-accent-cyan font-bold text-xs" style="display:none;">✓</span>
+            </button>
+            <button onclick="selectLanguage('mn')" class="lang-opt w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-surface-elevated text-neutral-300 hover:text-white transition-colors cursor-pointer text-left" data-lang="mn">
+              <span class="flex items-center gap-2"><span>🇲🇳</span><span>Монгол</span></span>
+              <span class="check-icon text-accent-cyan font-bold text-xs" style="display:none;">✓</span>
+            </button>
+          </div>
+        </div>
+
         <!-- Audio Synthesizer Toggle -->
         <button id="sound-toggle-btn" onclick="toggleAudio()" title="Toggle UI Sound FX" class="btn-tactile flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-elevated text-neutral-300 hover:text-accent-cyan border border-white/[0.08] font-mono text-xs cursor-pointer">
           <span class="material-symbols-outlined text-sm" id="sound-icon">volume_up</span>
@@ -282,12 +301,6 @@
           <span class="text-[10px] text-neutral-400 bg-surface-highlight px-1 rounded border border-white/[0.08]">⌘K</span>
         </button>
 
-        <!-- LinkedIn (Icon Only on compact) -->
-        <a href="https://www.linkedin.com/in/enhjargal-otgonbaatar-582101420/" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" class="btn-tactile flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-[#0a66c2]/20 text-neutral-300 hover:text-[#70b5f9] border border-white/[0.08] hover:border-[#0a66c2]/40 font-mono text-xs transition-all">
-          <svg class="w-3.5 h-3.5 fill-current text-[#70b5f9]" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-          <span class="hidden xl:inline text-xs">LinkedIn</span>
-        </a>
-
         <!-- GitHub -->
         <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" rel="noopener noreferrer" title="GitHub Repository" class="btn-tactile flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-elevated text-neutral-300 hover:text-white border border-white/[0.08] font-mono text-xs transition-all">
           <span class="material-symbols-outlined text-sm">code</span>
@@ -297,7 +310,7 @@
         <!-- Live Demos CTA -->
         <a href="#projects" class="btn-tactile magnetic inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-accent-cyan hover:bg-[#3bf4ff] text-obsidian font-mono text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(0,240,255,0.35)]">
           <span class="material-symbols-outlined text-xs font-bold">rocket_launch</span>
-          <span>Demos</span>
+          <span data-i18n="nav_demos_cta">Demos</span>
         </a>
       </div>
 
@@ -306,7 +319,7 @@
 
   <main class="w-full pt-20 md:pt-24 pb-20 relative z-10 blueprint-grid">
 
-    <!-- ==================== HERO SECTION (PERFECTLY BALANCED RHYTHM) ==================== -->
+    <!-- ==================== HERO SECTION ==================== -->
     <section class="max-w-[1360px] mx-auto px-5 sm:px-8 pt-8 md:pt-14 pb-16 md:pb-20 relative" id="about">
       
       <!-- Interactive WebGL/Canvas Particle Constellation -->
@@ -325,43 +338,43 @@
           <div class="flex flex-wrap items-center gap-2.5">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-card border border-white/[0.1] shadow-sm">
               <span class="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span>
-              <span class="font-mono text-[11px] uppercase tracking-wider text-neutral-200 font-semibold">
+              <span class="font-mono text-[11px] uppercase tracking-wider text-neutral-200 font-semibold" data-i18n="hero_credentials">
                 BSUIR '26 // PROGRAMMER &amp; BUSINESS ANALYST
               </span>
             </div>
 
             <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-accent-emerald/10 border border-accent-emerald/25 text-accent-emerald font-mono text-[10.5px] font-bold">
               <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
-              <span>OPEN TO FULL-STACK &amp; BACKEND ROLES</span>
+              <span data-i18n="hero_status">OPEN TO FULL-STACK &amp; BACKEND ROLES</span>
             </div>
           </div>
 
           <!-- Main Architectural Headline -->
           <h1 class="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-bold tracking-tight leading-[1.14] text-white">
-            Architecting <span class="shimmer-text">distributed backends</span> and zero-friction web apps.
+            <span data-i18n="hero_title_p1">Architecting</span> <span class="shimmer-text" data-i18n="hero_title_highlight">distributed backends</span> <span data-i18n="hero_title_p2">and zero-friction web apps.</span>
           </h1>
 
-          <!-- Academic & Professional Description (Punchy, Clean, No Overflow) -->
-          <p class="text-neutral-300 text-sm sm:text-base leading-relaxed max-w-xl">
+          <!-- Academic & Professional Description -->
+          <p class="text-neutral-300 text-sm sm:text-base leading-relaxed max-w-xl" data-i18n="hero_description">
             Graduating from <strong class="text-white font-medium">BSUIR</strong> in <span class="text-accent-cyan font-mono font-semibold">June 2026</span> as a certified <span class="text-neutral-100">Programmer &amp; Business Analyst</span> (<span class="font-mono text-xs text-neutral-400">Программист и бизнес-аналитик</span>). Specialized in production JVM microservices (<span class="text-neutral-100">Spring Boot 3, Kotlin, Java 21 LTS</span>), transactional PostgreSQL databases, and high-craft client interfaces with <span class="text-neutral-100">React 19, TypeScript</span>, and <span class="text-neutral-100">Android Jetpack Compose</span>.
           </p>
 
-          <!-- Live Engineering Stat Chips (Compact 4-column HUD) -->
+          <!-- Live Engineering Stat Chips -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-xs max-w-xl">
             <div class="p-3 rounded-xl bg-surface-card/90 border border-white/[0.08] flex flex-col gap-0.5 backdrop-blur">
-              <span class="text-[9.5px] uppercase text-neutral-400 tracking-wider">Production Apps</span>
-              <span class="text-lg font-bold text-accent-cyan">6 Deployed</span>
+              <span class="text-[9.5px] uppercase text-neutral-400 tracking-wider" data-i18n="stat_apps">Production Apps</span>
+              <span class="text-lg font-bold text-accent-cyan" data-i18n="stat_apps_val">6 Deployed</span>
             </div>
             <div class="p-3 rounded-xl bg-surface-card/90 border border-white/[0.08] flex flex-col gap-0.5 backdrop-blur">
-              <span class="text-[9.5px] uppercase text-neutral-400 tracking-wider">Architecture</span>
+              <span class="text-[9.5px] uppercase text-neutral-400 tracking-wider" data-i18n="stat_arch">Architecture</span>
               <span class="text-lg font-bold text-white">JVM &amp; React</span>
             </div>
             <div class="p-3 rounded-xl bg-surface-card/90 border border-white/[0.08] flex flex-col gap-0.5 backdrop-blur">
-              <span class="text-[9.5px] uppercase text-neutral-400 tracking-wider">Diploma Thesis</span>
-              <span class="text-lg font-bold text-accent-violet">A+ Defended</span>
+              <span class="text-[9.5px] uppercase text-neutral-400 tracking-wider" data-i18n="stat_thesis">Diploma Thesis</span>
+              <span class="text-lg font-bold text-accent-violet" data-i18n="stat_thesis_val">A+ Defended</span>
             </div>
             <div class="p-3 rounded-xl bg-surface-card/90 border border-white/[0.08] flex flex-col gap-0.5 backdrop-blur">
-              <span class="text-[9.5px] uppercase text-neutral-400 tracking-wider">Edge Latency</span>
+              <span class="text-[9.5px] uppercase text-neutral-400 tracking-wider" data-i18n="stat_edge">Edge Latency</span>
               <span class="text-lg font-bold text-accent-emerald" id="live-ping-val">14 ms</span>
             </div>
           </div>
@@ -370,17 +383,17 @@
           <div class="flex flex-wrap items-center gap-3 pt-1">
             <a href="#projects" class="btn-tactile magnetic inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-accent-cyan hover:bg-[#3bf4ff] text-obsidian font-mono text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(0,240,255,0.4)]">
               <span class="material-symbols-outlined text-sm">apps</span>
-              <span>Explore 6 Live Systems</span>
+              <span data-i18n="btn_explore_projects">Explore 6 Live Systems</span>
             </a>
             
             <a href="#contact" class="btn-tactile inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-card hover:bg-surface-elevated text-white border border-white/[0.1] font-mono text-xs font-semibold uppercase tracking-wider hover:border-accent-cyan/40 transition-colors">
               <span class="material-symbols-outlined text-sm text-accent-cyan">send</span>
-              <span>Initiate Contact</span>
+              <span data-i18n="btn_initiate_contact">Initiate Contact</span>
             </a>
 
             <button onclick="openAboutModal(event)" class="btn-tactile inline-flex items-center gap-1.5 px-3 py-3 rounded-xl bg-transparent hover:bg-white/[0.04] text-neutral-400 hover:text-white font-mono text-xs uppercase tracking-wider transition-colors cursor-pointer">
               <span class="material-symbols-outlined text-sm">school</span>
-              <span>BSUIR Specs</span>
+              <span data-i18n="btn_bsuir_specs">BSUIR Specs</span>
             </button>
           </div>
 
@@ -391,9 +404,8 @@
           <div class="spotlight-card rounded-2xl shadow-2xl border border-white/[0.12] bg-surface-card overflow-hidden">
             <div class="specular-glare"></div>
             
-            <!-- Window Titlebar & File Tabs (Fixed Clean Layout) -->
+            <!-- Window Titlebar & File Tabs -->
             <div class="flex items-center justify-between px-3.5 py-2.5 bg-surface-elevated/90 border-b border-white/[0.08]">
-              <!-- Traffic lights -->
               <div class="flex items-center gap-1.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
@@ -413,7 +425,6 @@
                 </button>
               </div>
 
-              <!-- Cluster badge -->
               <div class="flex items-center gap-1 font-mono text-[10px] text-accent-emerald font-semibold">
                 <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-pulse"></span>
                 <span>JVM 21</span>
@@ -429,11 +440,11 @@
             <div class="px-4 py-2.5 bg-surface-elevated/70 border-t border-white/[0.08] flex items-center justify-between gap-2">
               <div class="flex items-center gap-2 font-mono text-xs text-neutral-300">
                 <span class="material-symbols-outlined text-sm text-accent-cyan animate-spin" id="bench-spinner" style="display:none;">progress_activity</span>
-                <span id="bench-status" class="text-[11px] text-neutral-400">Cluster Status: Idle</span>
+                <span id="bench-status" class="text-[11px] text-neutral-400" data-i18n="bench_idle">Cluster Status: Idle</span>
               </div>
               <button onclick="runLiveBenchmark()" id="bench-btn" class="btn-tactile px-3 py-1 rounded-lg bg-accent-cyan/15 hover:bg-accent-cyan/25 text-accent-cyan border border-accent-cyan/30 font-mono text-[11px] font-bold cursor-pointer flex items-center gap-1">
                 <span class="material-symbols-outlined text-xs">play_arrow</span>
-                <span>RUN BENCHMARK</span>
+                <span data-i18n="btn_run_benchmark">RUN BENCHMARK</span>
               </button>
             </div>
 
@@ -445,7 +456,7 @@
             <!-- Real-time Sinusoidal Throughput Wave -->
             <div class="px-4 py-2 bg-surface/90 border-t border-white/[0.06] flex items-center justify-between font-mono text-[10.5px] text-neutral-400">
               <div class="flex items-center gap-2">
-                <span class="text-accent-cyan font-bold">THROUGHPUT:</span>
+                <span class="text-accent-cyan font-bold" data-i18n="tps_label">THROUGHPUT:</span>
                 <span class="text-white font-bold" id="live-tps">4,820 req/s</span>
               </div>
               <canvas id="waveform-canvas" class="w-32 h-4"></canvas>
@@ -466,12 +477,12 @@
         <div>
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
-            <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold">PRODUCTION ARCHITECTURE</span>
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold" data-i18n="proj_badge">PRODUCTION ARCHITECTURE</span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-2">
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-2" data-i18n="proj_title">
             Shipped Systems &amp; Live Demos
           </h2>
-          <p class="text-neutral-400 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+          <p class="text-neutral-400 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed" data-i18n="proj_subtitle">
             6 fully functional, deployed full-stack systems. Backends engineered with Spring Boot, Kotlin &amp; Java 21, clients crafted with React 19, TypeScript, and Android Jetpack Compose.
           </p>
         </div>
@@ -479,16 +490,16 @@
         <!-- Category Filter Tabs -->
         <div class="flex items-center gap-1.5 flex-wrap p-1 rounded-xl bg-surface-card border border-white/[0.08]">
           <button onclick="filterSystem('all')" class="filter-btn active px-3 py-1.5 rounded-lg font-mono text-xs text-white bg-surface-elevated border border-white/[0.1] transition-all cursor-pointer">
-            All (6)
+            <span data-i18n="filter_all">All (6)</span>
           </button>
           <button onclick="filterSystem('fintech')" class="filter-btn px-3 py-1.5 rounded-lg font-mono text-xs text-neutral-400 hover:text-white transition-all cursor-pointer">
-            Fintech
+            <span data-i18n="filter_fintech">Fintech</span>
           </button>
           <button onclick="filterSystem('edtech')" class="filter-btn px-3 py-1.5 rounded-lg font-mono text-xs text-neutral-400 hover:text-white transition-all cursor-pointer">
-            EdTech
+            <span data-i18n="filter_edtech">EdTech</span>
           </button>
           <button onclick="filterSystem('realtime')" class="filter-btn px-3 py-1.5 rounded-lg font-mono text-xs text-neutral-400 hover:text-white transition-all cursor-pointer">
-            Realtime
+            <span data-i18n="filter_realtime">Realtime</span>
           </button>
         </div>
       </div>
@@ -503,7 +514,7 @@
           <div class="flex flex-col gap-4 relative z-10">
             <!-- Header Badges -->
             <div class="flex items-center justify-between">
-              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold">
+              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold" data-i18n="card1_tag">
                 01 // DIPLOMA THESIS PROJECT
               </span>
               <a href="https://dist-indol-alpha-39.vercel.app" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-full bg-accent-cyan/15 border border-accent-cyan/40 text-accent-cyan font-mono text-[10.5px] font-bold uppercase tracking-wider hover:bg-accent-cyan hover:text-obsidian transition-colors">
@@ -513,10 +524,10 @@
 
             <!-- Title & Brief -->
             <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-cyan transition-colors">
+              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-cyan transition-colors" data-i18n="card1_title">
                 BLAZE.by — Sports E-Commerce &amp; Media Platform
               </h3>
-              <p class="text-neutral-400 text-sm leading-relaxed mt-2">
+              <p class="text-neutral-400 text-sm leading-relaxed mt-2" data-i18n="card1_desc">
                 Full-scale multi-tier athletic equipment e-commerce platform and media portal. Engineered with secure cart persistence, multi-criteria category filtering, catalog search, and Android client interop.
               </p>
             </div>
@@ -556,7 +567,7 @@
 
             <!-- One-Click Credential & Architecture Accordion -->
             <div class="p-3 rounded-xl bg-surface-elevated/70 border border-white/[0.08] flex items-center justify-between font-mono text-xs">
-              <span class="text-neutral-400">DEMO CREDENTIALS:</span>
+              <span class="text-neutral-400" data-i18n="creds_label">DEMO CREDENTIALS:</span>
               <button onclick="copyCredentials('admin', 'admin123', this)" class="text-accent-cyan hover:underline flex items-center gap-1 cursor-pointer font-bold">
                 <span>admin / admin123</span>
                 <span class="material-symbols-outlined text-xs">content_copy</span>
@@ -568,10 +579,10 @@
           <div class="flex items-center justify-between pt-5 mt-5 border-t border-white/[0.08] relative z-10">
             <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" rel="noopener noreferrer" class="btn-tactile inline-flex items-center gap-1.5 text-neutral-400 hover:text-white font-mono text-xs uppercase tracking-wider transition-colors">
               <span class="material-symbols-outlined text-sm">code</span>
-              <span>Source</span>
+              <span data-i18n="btn_source">Source</span>
             </a>
             <a href="https://dist-indol-alpha-39.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-tactile magnetic inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-accent-cyan hover:bg-[#3bf4ff] text-obsidian font-mono text-xs font-bold transition-all shadow-[0_0_15px_rgba(0,240,255,0.35)]">
-              <span>Launch Live System</span>
+              <span data-i18n="btn_launch_system">Launch Live System</span>
               <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
           </div>
@@ -583,7 +594,7 @@
           
           <div class="flex flex-col gap-4 relative z-10">
             <div class="flex items-center justify-between">
-              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-violet font-bold">
+              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-violet font-bold" data-i18n="card2_tag">
                 02 // EDTECH &amp; HIRING SIMULATION
               </span>
               <a href="https://devprep-interview-hazel.vercel.app" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-full bg-accent-violet/15 border border-accent-violet/40 text-accent-violet font-mono text-[10.5px] font-bold uppercase tracking-wider hover:bg-accent-violet hover:text-white transition-colors">
@@ -592,10 +603,10 @@
             </div>
 
             <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-violet transition-colors">
+              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-violet transition-colors" data-i18n="card2_title">
                 DevPrep — Technical Interview &amp; Algorithmic Engine
               </h3>
-              <p class="text-neutral-400 text-sm leading-relaxed mt-2">
+              <p class="text-neutral-400 text-sm leading-relaxed mt-2" data-i18n="card2_desc">
                 Simulated technical recruitment platform designed for candidates preparing for FAANG/enterprise coding rounds. Features algorithmic test runners, timed quizzes, and instant grading.
               </p>
             </div>
@@ -631,7 +642,7 @@
             </div>
 
             <div class="p-3 rounded-xl bg-surface-elevated/70 border border-white/[0.08] flex items-center justify-between font-mono text-xs">
-              <span class="text-neutral-400">TEST CANDIDATE:</span>
+              <span class="text-neutral-400" data-i18n="creds_candidate">TEST CANDIDATE:</span>
               <button onclick="copyCredentials('candidate@devprep.io', 'pass2026', this)" class="text-accent-violet hover:underline flex items-center gap-1 cursor-pointer font-bold">
                 <span>candidate@devprep.io / pass2026</span>
                 <span class="material-symbols-outlined text-xs">content_copy</span>
@@ -642,10 +653,10 @@
           <div class="flex items-center justify-between pt-5 mt-5 border-t border-white/[0.08] relative z-10">
             <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" rel="noopener noreferrer" class="btn-tactile inline-flex items-center gap-1.5 text-neutral-400 hover:text-white font-mono text-xs uppercase tracking-wider transition-colors">
               <span class="material-symbols-outlined text-sm">code</span>
-              <span>Source</span>
+              <span data-i18n="btn_source">Source</span>
             </a>
             <a href="https://devprep-interview-hazel.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-tactile magnetic inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-accent-violet hover:bg-[#9d74ff] text-white font-mono text-xs font-bold transition-all shadow-[0_0_15px_rgba(139,92,246,0.35)]">
-              <span>Launch Live System</span>
+              <span data-i18n="btn_launch_system">Launch Live System</span>
               <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
           </div>
@@ -657,7 +668,7 @@
           
           <div class="flex flex-col gap-4 relative z-10">
             <div class="flex items-center justify-between">
-              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold">
+              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold" data-i18n="card3_tag">
                 03 // PERSONAL FINANCE LEDGER
               </span>
               <a href="https://bynance-finance.vercel.app/admin" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-full bg-accent-cyan/15 border border-accent-cyan/40 text-accent-cyan font-mono text-[10.5px] font-bold uppercase tracking-wider hover:bg-accent-cyan hover:text-obsidian transition-colors">
@@ -666,10 +677,10 @@
             </div>
 
             <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-cyan transition-colors">
+              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-cyan transition-colors" data-i18n="card3_title">
                 BYnance — Multi-Currency Wealth &amp; Ledger Platform
               </h3>
-              <p class="text-neutral-400 text-sm leading-relaxed mt-2">
+              <p class="text-neutral-400 text-sm leading-relaxed mt-2" data-i18n="card3_desc">
                 Enterprise personal finance and budget auditing system. Supports real-time multi-currency conversions (BYN, USD, EUR, RUB), category-based expense visualization, and comprehensive admin auditing.
               </p>
             </div>
@@ -706,7 +717,7 @@
             </div>
 
             <div class="p-3 rounded-xl bg-surface-elevated/70 border border-white/[0.08] flex items-center justify-between font-mono text-xs">
-              <span class="text-neutral-400">ADMIN CREDENTIALS:</span>
+              <span class="text-neutral-400" data-i18n="creds_admin">ADMIN CREDENTIALS:</span>
               <button onclick="copyCredentials('admin', 'admin', this)" class="text-accent-cyan hover:underline flex items-center gap-1 cursor-pointer font-bold">
                 <span>admin / admin</span>
                 <span class="material-symbols-outlined text-xs">content_copy</span>
@@ -717,14 +728,14 @@
           <div class="flex items-center justify-between pt-5 mt-5 border-t border-white/[0.08] relative z-10">
             <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" rel="noopener noreferrer" class="btn-tactile inline-flex items-center gap-1.5 text-neutral-400 hover:text-white font-mono text-xs uppercase tracking-wider transition-colors">
               <span class="material-symbols-outlined text-sm">code</span>
-              <span>Source</span>
+              <span data-i18n="btn_source">Source</span>
             </a>
             <div class="flex items-center gap-2">
               <a href="https://bynance-finance.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-tactile inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-surface-elevated hover:bg-surface-highlight text-neutral-300 hover:text-white border border-white/[0.08] font-mono text-xs transition-all">
-                <span>User</span>
+                <span data-i18n="btn_user_app">User</span>
               </a>
               <a href="https://bynance-finance.vercel.app/admin" target="_blank" rel="noopener noreferrer" class="btn-tactile magnetic inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-accent-cyan hover:bg-[#3bf4ff] text-obsidian font-mono text-xs font-bold transition-all shadow-[0_0_15px_rgba(0,240,255,0.35)]">
-                <span>Admin</span>
+                <span data-i18n="btn_admin_app">Admin</span>
                 <span class="material-symbols-outlined text-sm">arrow_forward</span>
               </a>
             </div>
@@ -737,7 +748,7 @@
           
           <div class="flex flex-col gap-4 relative z-10">
             <div class="flex items-center justify-between">
-              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-violet font-bold">
+              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-violet font-bold" data-i18n="card4_tag">
                 04 // COLLABORATIVE TASK HUB
               </span>
               <a href="https://housework-tasks.vercel.app" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-full bg-accent-violet/15 border border-accent-violet/40 text-accent-violet font-mono text-[10.5px] font-bold uppercase tracking-wider hover:bg-accent-violet hover:text-white transition-colors">
@@ -746,10 +757,10 @@
             </div>
 
             <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-violet transition-colors">
+              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-violet transition-colors" data-i18n="card4_title">
                 ДомДела — Distributed Household Kanban &amp; Gamification
               </h3>
-              <p class="text-neutral-400 text-sm leading-relaxed mt-2">
+              <p class="text-neutral-400 text-sm leading-relaxed mt-2" data-i18n="card4_desc">
                 Shared family chore coordinator and task scheduler. Implements real-time task board updates, karma point attribution, recurring schedule automation, and priority notifications.
               </p>
             </div>
@@ -785,7 +796,7 @@
             </div>
 
             <div class="p-3 rounded-xl bg-surface-elevated/70 border border-white/[0.08] flex items-center justify-between font-mono text-xs">
-              <span class="text-neutral-400">TEST PROFILE:</span>
+              <span class="text-neutral-400" data-i18n="creds_profile">TEST PROFILE:</span>
               <button onclick="copyCredentials('demo_family', 'demo1234', this)" class="text-accent-violet hover:underline flex items-center gap-1 cursor-pointer font-bold">
                 <span>demo_family / demo1234</span>
                 <span class="material-symbols-outlined text-xs">content_copy</span>
@@ -796,10 +807,10 @@
           <div class="flex items-center justify-between pt-5 mt-5 border-t border-white/[0.08] relative z-10">
             <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" rel="noopener noreferrer" class="btn-tactile inline-flex items-center gap-1.5 text-neutral-400 hover:text-white font-mono text-xs uppercase tracking-wider transition-colors">
               <span class="material-symbols-outlined text-sm">code</span>
-              <span>Source</span>
+              <span data-i18n="btn_source">Source</span>
             </a>
             <a href="https://housework-tasks.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-tactile magnetic inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-accent-violet hover:bg-[#9d74ff] text-white font-mono text-xs font-bold transition-all shadow-[0_0_15px_rgba(139,92,246,0.35)]">
-              <span>Launch Live System</span>
+              <span data-i18n="btn_launch_system">Launch Live System</span>
               <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
           </div>
@@ -811,7 +822,7 @@
           
           <div class="flex flex-col gap-4 relative z-10">
             <div class="flex items-center justify-between">
-              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold">
+              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold" data-i18n="card5_tag">
                 05 // UNIVERSITY MANAGEMENT SYSTEM
               </span>
               <a href="https://student-attendance-system-eta-five.vercel.app" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-full bg-accent-cyan/15 border border-accent-cyan/40 text-accent-cyan font-mono text-[10.5px] font-bold uppercase tracking-wider hover:bg-accent-cyan hover:text-obsidian transition-colors">
@@ -820,10 +831,10 @@
             </div>
 
             <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-cyan transition-colors">
+              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-cyan transition-colors" data-i18n="card5_title">
                 Student Attendance &amp; Academic Grade Registry
               </h3>
-              <p class="text-neutral-400 text-sm leading-relaxed mt-2">
+              <p class="text-neutral-400 text-sm leading-relaxed mt-2" data-i18n="card5_desc">
                 Automated attendance tracker for university faculties and students. Includes dynamic QR verification, statistical absence reports, and multi-tier role authorization for deans, professors, and students.
               </p>
             </div>
@@ -860,7 +871,7 @@
             </div>
 
             <div class="p-3 rounded-xl bg-surface-elevated/70 border border-white/[0.08] flex items-center justify-between font-mono text-xs">
-              <span class="text-neutral-400">PROFESSOR DEMO:</span>
+              <span class="text-neutral-400" data-i18n="creds_prof">PROFESSOR DEMO:</span>
               <button onclick="copyCredentials('teacher@bsuir.by', 'bsuir2026', this)" class="text-accent-cyan hover:underline flex items-center gap-1 cursor-pointer font-bold">
                 <span>teacher@bsuir.by / bsuir2026</span>
                 <span class="material-symbols-outlined text-xs">content_copy</span>
@@ -871,10 +882,10 @@
           <div class="flex items-center justify-between pt-5 mt-5 border-t border-white/[0.08] relative z-10">
             <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" rel="noopener noreferrer" class="btn-tactile inline-flex items-center gap-1.5 text-neutral-400 hover:text-white font-mono text-xs uppercase tracking-wider transition-colors">
               <span class="material-symbols-outlined text-sm">code</span>
-              <span>Source</span>
+              <span data-i18n="btn_source">Source</span>
             </a>
             <a href="https://student-attendance-system-eta-five.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-tactile magnetic inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-accent-cyan hover:bg-[#3bf4ff] text-obsidian font-mono text-xs font-bold transition-all shadow-[0_0_15px_rgba(0,240,255,0.35)]">
-              <span>Launch Live System</span>
+              <span data-i18n="btn_launch_system">Launch Live System</span>
               <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
           </div>
@@ -886,7 +897,7 @@
           
           <div class="flex flex-col gap-4 relative z-10">
             <div class="flex items-center justify-between">
-              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-violet font-bold">
+              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-violet font-bold" data-i18n="card6_tag">
                 06 // SOCIAL DISCOVERY HUB
               </span>
               <a href="https://date-matchmaker.vercel.app" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-full bg-accent-violet/15 border border-accent-violet/40 text-accent-violet font-mono text-[10.5px] font-bold uppercase tracking-wider hover:bg-accent-violet hover:text-white transition-colors">
@@ -895,10 +906,10 @@
             </div>
 
             <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-violet transition-colors">
+              <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-accent-violet transition-colors" data-i18n="card6_title">
                 Date Matchmaker — Real-Time Social &amp; Event Discovery
               </h3>
-              <p class="text-neutral-400 text-sm leading-relaxed mt-2">
+              <p class="text-neutral-400 text-sm leading-relaxed mt-2" data-i18n="card6_desc">
                 Curated dating and interest-matching platform with fluid gesture-driven card interactions, location-based event filters, real-time messaging, and profile analytics.
               </p>
             </div>
@@ -934,7 +945,7 @@
             </div>
 
             <div class="p-3 rounded-xl bg-surface-elevated/70 border border-white/[0.08] flex items-center justify-between font-mono text-xs">
-              <span class="text-neutral-400">TEST USER:</span>
+              <span class="text-neutral-400" data-i18n="creds_user">TEST USER:</span>
               <button onclick="copyCredentials('alex@match.dev', 'match2026', this)" class="text-accent-violet hover:underline flex items-center gap-1 cursor-pointer font-bold">
                 <span>alex@match.dev / match2026</span>
                 <span class="material-symbols-outlined text-xs">content_copy</span>
@@ -945,10 +956,10 @@
           <div class="flex items-center justify-between pt-5 mt-5 border-t border-white/[0.08] relative z-10">
             <a href="https://github.com/Enhjargal22/Portfolio" target="_blank" rel="noopener noreferrer" class="btn-tactile inline-flex items-center gap-1.5 text-neutral-400 hover:text-white font-mono text-xs uppercase tracking-wider transition-colors">
               <span class="material-symbols-outlined text-sm">code</span>
-              <span>Source</span>
+              <span data-i18n="btn_source">Source</span>
             </a>
             <a href="https://date-matchmaker.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-tactile magnetic inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-accent-violet hover:bg-[#9d74ff] text-white font-mono text-xs font-bold transition-all shadow-[0_0_15px_rgba(139,92,246,0.35)]">
-              <span>Launch Live System</span>
+              <span data-i18n="btn_launch_system">Launch Live System</span>
               <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
           </div>
@@ -964,12 +975,12 @@
         <div class="flex flex-col gap-2">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
-            <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold">TECHNICAL SPECIFICATIONS</span>
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold" data-i18n="stack_badge">TECHNICAL SPECIFICATIONS</span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white" data-i18n="stack_title">
             Architecture Radar &amp; Core Stack
           </h2>
-          <p class="text-neutral-400 text-sm sm:text-base max-w-xl">
+          <p class="text-neutral-400 text-sm sm:text-base max-w-xl" data-i18n="stack_subtitle">
             Battle-tested engineering competencies across distributed backends, reactive web clients, mobile runtimes, and DevOps pipelines.
           </p>
         </div>
@@ -981,7 +992,7 @@
             <div class="specular-glare"></div>
             <div class="flex items-center gap-3 relative z-10">
               <span class="w-8 h-8 rounded-lg bg-accent-cyan/15 border border-accent-cyan/30 flex items-center justify-center text-accent-cyan font-mono text-sm font-bold">01</span>
-              <h3 class="font-bold text-white text-base">Backend &amp; Distributed</h3>
+              <h3 class="font-bold text-white text-base" data-i18n="stack_col1">Backend &amp; Distributed</h3>
             </div>
             <ul class="flex flex-col gap-2 text-sm text-neutral-400 font-mono relative z-10">
               <li class="flex items-center gap-2 text-neutral-200"><span class="text-accent-cyan">▹</span> Spring Boot 3.2 / 3.3</li>
@@ -999,7 +1010,7 @@
             <div class="specular-glare"></div>
             <div class="flex items-center gap-3 relative z-10">
               <span class="w-8 h-8 rounded-lg bg-accent-violet/15 border border-accent-violet/30 flex items-center justify-center text-accent-violet font-mono text-sm font-bold">02</span>
-              <h3 class="font-bold text-white text-base">Frontend Systems</h3>
+              <h3 class="font-bold text-white text-base" data-i18n="stack_col2">Frontend Systems</h3>
             </div>
             <ul class="flex flex-col gap-2 text-sm text-neutral-400 font-mono relative z-10">
               <li class="flex items-center gap-2 text-neutral-200"><span class="text-accent-violet">▹</span> React 18 &amp; React 19</li>
@@ -1017,7 +1028,7 @@
             <div class="specular-glare"></div>
             <div class="flex items-center gap-3 relative z-10">
               <span class="w-8 h-8 rounded-lg bg-accent-cyan/15 border border-accent-cyan/30 flex items-center justify-center text-accent-cyan font-mono text-sm font-bold">03</span>
-              <h3 class="font-bold text-white text-base">Mobile Architecture</h3>
+              <h3 class="font-bold text-white text-base" data-i18n="stack_col3">Mobile Architecture</h3>
             </div>
             <ul class="flex flex-col gap-2 text-sm text-neutral-400 font-mono relative z-10">
               <li class="flex items-center gap-2 text-neutral-200"><span class="text-accent-cyan">▹</span> Android SDK &amp; Kotlin</li>
@@ -1035,7 +1046,7 @@
             <div class="specular-glare"></div>
             <div class="flex items-center gap-3 relative z-10">
               <span class="w-8 h-8 rounded-lg bg-accent-violet/15 border border-accent-violet/30 flex items-center justify-center text-accent-violet font-mono text-sm font-bold">04</span>
-              <h3 class="font-bold text-white text-base">Infra &amp; Business Analysis</h3>
+              <h3 class="font-bold text-white text-base" data-i18n="stack_col4">Infra &amp; Business Analysis</h3>
             </div>
             <ul class="flex flex-col gap-2 text-sm text-neutral-400 font-mono relative z-10">
               <li class="flex items-center gap-2 text-neutral-200"><span class="text-accent-violet">▹</span> Docker &amp; Containerization</li>
@@ -1061,12 +1072,12 @@
           <div>
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
-              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold">GET IN TOUCH</span>
+              <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold" data-i18n="contact_badge">GET IN TOUCH</span>
             </div>
-            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-2">
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-2" data-i18n="contact_title">
               Let's engineer something great together.
             </h2>
-            <p class="text-neutral-400 text-sm sm:text-base mt-2.5 leading-relaxed">
+            <p class="text-neutral-400 text-sm sm:text-base mt-2.5 leading-relaxed" data-i18n="contact_subtitle">
               Open to full-time Software Engineer positions, enterprise contract engagements, backend systems architecture, and technical consulting.
             </p>
           </div>
@@ -1080,13 +1091,13 @@
                   <span class="material-symbols-outlined text-lg">mail</span>
                 </div>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[10px] uppercase tracking-wider text-neutral-400">Direct Email</span>
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-neutral-400" data-i18n="contact_direct_email">Direct Email</span>
                   <a href="mailto:enhjargal8919@gmail.com" class="text-white hover:text-accent-cyan font-mono text-xs sm:text-sm transition-colors font-bold">
                     enhjargal8919@gmail.com
                   </a>
                 </div>
               </div>
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=enhjargal8919@gmail.com" target="_blank" rel="noopener noreferrer" class="btn-tactile px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-highlight text-accent-cyan font-mono text-xs font-semibold border border-white/[0.08] transition-all">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=enhjargal8919@gmail.com" target="_blank" rel="noopener noreferrer" class="btn-tactile px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-highlight text-accent-cyan font-mono text-xs font-semibold border border-white/[0.08] transition-all" data-i18n="btn_compose">
                 Compose
               </a>
             </div>
@@ -1098,13 +1109,13 @@
                   <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
                 </div>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[10px] uppercase tracking-wider text-neutral-400">Professional Network</span>
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-neutral-400" data-i18n="contact_linkedin">Professional Network</span>
                   <a href="https://www.linkedin.com/in/enhjargal-otgonbaatar-582101420/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-[#70b5f9] font-mono text-xs sm:text-sm transition-colors font-bold">
                     Enhjargal Otgonbaatar
                   </a>
                 </div>
               </div>
-              <a href="https://www.linkedin.com/in/enhjargal-otgonbaatar-582101420/" target="_blank" rel="noopener noreferrer" class="btn-tactile px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-highlight text-neutral-300 font-mono text-xs font-semibold border border-white/[0.08] transition-all">
+              <a href="https://www.linkedin.com/in/enhjargal-otgonbaatar-582101420/" target="_blank" rel="noopener noreferrer" class="btn-tactile px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-highlight text-neutral-300 font-mono text-xs font-semibold border border-white/[0.08] transition-all" data-i18n="btn_connect">
                 Connect ↗
               </a>
             </div>
@@ -1116,13 +1127,13 @@
                   <span class="material-symbols-outlined text-lg">terminal</span>
                 </div>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[10px] uppercase tracking-wider text-neutral-400">Source Repositories</span>
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-neutral-400" data-i18n="contact_github">Source Repositories</span>
                   <a href="https://github.com/Enhjargal22" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent-cyan font-mono text-xs sm:text-sm transition-colors font-bold">
                     github.com/Enhjargal22
                   </a>
                 </div>
               </div>
-              <a href="https://github.com/Enhjargal22" target="_blank" rel="noopener noreferrer" class="btn-tactile px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-highlight text-neutral-300 font-mono text-xs font-semibold border border-white/[0.08] transition-all">
+              <a href="https://github.com/Enhjargal22" target="_blank" rel="noopener noreferrer" class="btn-tactile px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-highlight text-neutral-300 font-mono text-xs font-semibold border border-white/[0.08] transition-all" data-i18n="btn_explore">
                 Explore ↗
               </a>
             </div>
@@ -1141,27 +1152,27 @@
               <input type="hidden" name="_template" value="table">
 
               <div class="flex flex-col gap-1 border-b border-white/[0.08] pb-3">
-                <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold">DISPATCH DIRECT MESSAGE</span>
-                <p class="text-neutral-400 text-xs">
+                <span class="font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan font-bold" data-i18n="form_heading">DISPATCH DIRECT MESSAGE</span>
+                <p class="text-neutral-400 text-xs" data-i18n="form_sub">
                   Submissions are routed directly to <span class="text-white font-mono font-medium">enhjargal8919@gmail.com</span>.
                 </p>
               </div>
 
               <!-- Topic Chips -->
               <div class="flex flex-col gap-2">
-                <label class="font-mono text-xs uppercase tracking-wider text-neutral-400">Inquiry Topic</label>
+                <label class="font-mono text-xs uppercase tracking-wider text-neutral-400" data-i18n="form_topic_label">Inquiry Topic</label>
                 <div class="flex flex-wrap gap-2">
                   <button type="button" onclick="selectTopic(this, 'Full-time Software Engineer')" class="topic-chip active px-3 py-1 rounded-lg bg-surface-elevated border border-accent-cyan/40 text-accent-cyan font-mono text-xs cursor-pointer">
-                    Full-time Role
+                    <span data-i18n="topic_role">Full-time Role</span>
                   </button>
                   <button type="button" onclick="selectTopic(this, 'Backend Microservices Architecture')" class="topic-chip px-3 py-1 rounded-lg bg-surface-card border border-white/[0.08] text-neutral-400 hover:text-white font-mono text-xs cursor-pointer">
-                    Backend Architecture
+                    <span data-i18n="topic_arch">Backend Architecture</span>
                   </button>
                   <button type="button" onclick="selectTopic(this, 'Web & Mobile Full-Stack Project')" class="topic-chip px-3 py-1 rounded-lg bg-surface-card border border-white/[0.08] text-neutral-400 hover:text-white font-mono text-xs cursor-pointer">
-                    Web &amp; Mobile App
+                    <span data-i18n="topic_app">Web &amp; Mobile App</span>
                   </button>
                   <button type="button" onclick="selectTopic(this, 'Technical Consulting')" class="topic-chip px-3 py-1 rounded-lg bg-surface-card border border-white/[0.08] text-neutral-400 hover:text-white font-mono text-xs cursor-pointer">
-                    Consulting
+                    <span data-i18n="topic_consult">Consulting</span>
                   </button>
                 </div>
                 <input type="hidden" name="topic" id="selected-topic-input" value="Full-time Software Engineer">
@@ -1170,26 +1181,26 @@
               <!-- Two Column: Name & Email -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="flex flex-col gap-1.5">
-                  <label class="font-mono text-xs uppercase tracking-wider text-neutral-400" for="form-name">Your Name / Organization *</label>
-                  <input type="text" id="form-name" name="name" required placeholder="Alex Chen (Tech Lead)" class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-white/[0.1] text-white font-mono text-sm focus:outline-none focus:border-accent-cyan transition-colors">
+                  <label class="font-mono text-xs uppercase tracking-wider text-neutral-400" for="form-name" data-i18n="form_name_label">Your Name / Organization *</label>
+                  <input type="text" id="form-name" name="name" required placeholder="Alex Chen (Tech Lead)" data-i18n-ph="form_name_ph" class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-white/[0.1] text-white font-mono text-sm focus:outline-none focus:border-accent-cyan transition-colors">
                 </div>
                 <div class="flex flex-col gap-1.5">
-                  <label class="font-mono text-xs uppercase tracking-wider text-neutral-400" for="form-email">Your Work Email *</label>
-                  <input type="email" id="form-email" name="email" required placeholder="name@company.com" class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-white/[0.1] text-white font-mono text-sm focus:outline-none focus:border-accent-cyan transition-colors">
+                  <label class="font-mono text-xs uppercase tracking-wider text-neutral-400" for="form-email" data-i18n="form_email_label">Your Work Email *</label>
+                  <input type="email" id="form-email" name="email" required placeholder="name@company.com" data-i18n-ph="form_email_ph" class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-white/[0.1] text-white font-mono text-sm focus:outline-none focus:border-accent-cyan transition-colors">
                 </div>
               </div>
 
               <!-- Message -->
               <div class="flex flex-col gap-1.5">
-                <label class="font-mono text-xs uppercase tracking-wider text-neutral-400" for="form-message">Project Scope or Role Description *</label>
-                <textarea id="form-message" name="message" required rows="3" placeholder="Detail your project requirements, technology stack, timeline or job opening..." class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-white/[0.1] text-white font-mono text-sm focus:outline-none focus:border-accent-cyan transition-colors resize-none"></textarea>
+                <label class="font-mono text-xs uppercase tracking-wider text-neutral-400" for="form-message" data-i18n="form_msg_label">Project Scope or Role Description *</label>
+                <textarea id="form-message" name="message" required rows="3" placeholder="Detail your project requirements, technology stack, timeline or job opening..." data-i18n-ph="form_msg_ph" class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-white/[0.1] text-white font-mono text-sm focus:outline-none focus:border-accent-cyan transition-colors resize-none"></textarea>
               </div>
 
               <!-- Submit Button -->
               <div class="flex items-center justify-between gap-4 pt-1">
-                <span class="font-mono text-[11px] text-neutral-400">Response SLA: &lt; 24 Hours</span>
+                <span class="font-mono text-[11px] text-neutral-400" data-i18n="form_sla">Response SLA: &lt; 24 Hours</span>
                 <button type="submit" class="btn-tactile magnetic px-5 py-3 rounded-xl bg-accent-cyan hover:bg-[#3bf4ff] text-obsidian font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center gap-2 cursor-pointer">
-                  <span>Transmit Message</span>
+                  <span data-i18n="btn_transmit">Transmit Message</span>
                   <span class="material-symbols-outlined text-sm font-bold">send</span>
                 </button>
               </div>
@@ -1203,17 +1214,79 @@
 
   </main>
 
+  <!-- ==================== FIRST-TIME WELCOME LANGUAGE PICKER MODAL ==================== -->
+  <div id="welcome-lang-modal" class="fixed inset-0 z-50 bg-obsidian/90 backdrop-blur-2xl flex items-center justify-center p-4" style="display:none;">
+    <div class="w-full max-w-lg rounded-2xl bg-surface-card border border-white/[0.15] p-6 sm:p-8 shadow-2xl relative flex flex-col gap-6">
+      <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-accent-cyan/15 border border-accent-cyan/30 flex items-center justify-center text-accent-cyan">
+            <span class="material-symbols-outlined text-base">language</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white tracking-wide">Choose Your Language</h3>
+            <span class="font-mono text-[11px] text-neutral-400">Сонгох хэлээ тохируулна уу / Выберите язык</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-3 font-mono">
+        <!-- English Card -->
+        <button onclick="selectLanguageAndClose('en')" class="btn-tactile p-4 rounded-xl bg-surface-elevated hover:bg-surface-highlight border border-white/[0.1] hover:border-accent-cyan/50 flex items-center justify-between text-left group transition-all cursor-pointer">
+          <div class="flex items-center gap-3.5">
+            <span class="text-2xl">🇺🇸</span>
+            <div class="flex flex-col">
+              <span class="text-white font-bold text-sm group-hover:text-accent-cyan transition-colors">English</span>
+              <span class="text-[11px] text-neutral-400">International / Engineering Standard</span>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-sm text-neutral-500 group-hover:text-accent-cyan group-hover:translate-x-1 transition-all">arrow_forward</span>
+        </button>
+
+        <!-- Russian Card -->
+        <button onclick="selectLanguageAndClose('ru')" class="btn-tactile p-4 rounded-xl bg-surface-elevated hover:bg-surface-highlight border border-white/[0.1] hover:border-accent-cyan/50 flex items-center justify-between text-left group transition-all cursor-pointer">
+          <div class="flex items-center gap-3.5">
+            <span class="text-2xl">🇷🇺</span>
+            <div class="flex flex-col">
+              <span class="text-white font-bold text-sm group-hover:text-accent-cyan transition-colors">Русский</span>
+              <span class="text-[11px] text-neutral-400">БГУИР квалификация и дипломы</span>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-sm text-neutral-500 group-hover:text-accent-cyan group-hover:translate-x-1 transition-all">arrow_forward</span>
+        </button>
+
+        <!-- Mongolian Card -->
+        <button onclick="selectLanguageAndClose('mn')" class="btn-tactile p-4 rounded-xl bg-surface-elevated hover:bg-surface-highlight border border-white/[0.1] hover:border-accent-cyan/50 flex items-center justify-between text-left group transition-all cursor-pointer">
+          <div class="flex items-center gap-3.5">
+            <span class="text-2xl">🇲🇳</span>
+            <div class="flex flex-col">
+              <span class="text-white font-bold text-sm group-hover:text-accent-cyan transition-colors">Монгол хэл</span>
+              <span class="text-[11px] text-neutral-400">Эх хэлээр үзэх</span>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-sm text-neutral-500 group-hover:text-accent-cyan group-hover:translate-x-1 transition-all">arrow_forward</span>
+        </button>
+      </div>
+
+      <div class="flex items-center justify-between pt-2 border-t border-white/[0.08] text-[11px] font-mono text-neutral-500">
+        <span>You can switch anytime in the navbar</span>
+        <button onclick="selectLanguageAndClose('en')" class="text-neutral-400 hover:text-white cursor-pointer">
+          Skip (English)
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ==================== COMMAND PALETTE (CMD+K / CTRL+K) ==================== -->
   <div id="cmd-palette" class="fixed inset-0 z-50 bg-obsidian/80 backdrop-blur-xl flex items-start justify-center pt-24 px-4" style="display:none;" onclick="handlePaletteBackdrop(event)">
     <div class="w-full max-w-xl rounded-2xl bg-surface-card border border-white/[0.15] shadow-2xl overflow-hidden flex flex-col" onclick="event.stopPropagation()">
       <div class="flex items-center gap-3 px-5 py-3.5 border-b border-white/[0.08] bg-surface-elevated">
         <span class="material-symbols-outlined text-accent-cyan">search</span>
-        <input type="text" id="cmd-input" placeholder="Type a command or jump to system..." class="w-full bg-transparent text-white font-mono text-sm focus:outline-none" oninput="filterPalette(this.value)">
+        <input type="text" id="cmd-input" placeholder="Type a command or jump to system..." data-i18n-ph="cmd_ph" class="w-full bg-transparent text-white font-mono text-sm focus:outline-none" oninput="filterPalette(this.value)">
         <span class="text-[10px] font-mono text-neutral-400 border border-white/[0.1] px-1.5 py-0.5 rounded">ESC</span>
       </div>
 
       <div class="p-3 max-h-[340px] overflow-y-auto space-y-1 font-mono text-xs" id="cmd-list">
-        <div class="px-3 py-1.5 text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Systems &amp; Demos</div>
+        <div class="px-3 py-1.5 text-[10px] text-neutral-500 uppercase tracking-widest font-bold" data-i18n="cmd_heading_systems">Systems &amp; Demos</div>
         
         <a href="https://dist-indol-alpha-39.vercel.app" target="_blank" class="cmd-item flex items-center justify-between px-3 py-2 rounded-xl hover:bg-surface-elevated text-neutral-300 hover:text-accent-cyan transition-colors">
           <div class="flex items-center gap-2">
@@ -1263,7 +1336,7 @@
           <span class="text-[10px] text-neutral-500">Live ↗</span>
         </a>
 
-        <div class="px-3 pt-2.5 pb-1 text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Quick Actions</div>
+        <div class="px-3 pt-2.5 pb-1 text-[10px] text-neutral-500 uppercase tracking-widest font-bold" data-i18n="cmd_heading_actions">Quick Actions</div>
 
         <button onclick="copyEmailToClipboard(); toggleCommandPalette();" class="cmd-item w-full flex items-center justify-between px-3 py-2 rounded-xl hover:bg-surface-elevated text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
           <div class="flex items-center gap-2">
@@ -1276,7 +1349,7 @@
         <button onclick="toggleAudio(); toggleCommandPalette();" class="cmd-item w-full flex items-center justify-between px-3 py-2 rounded-xl hover:bg-surface-elevated text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-sm text-accent-violet">volume_up</span>
-            <span>Toggle Synthesizer Sound FX</span>
+            <span data-i18n="cmd_audio_toggle">Toggle Synthesizer Sound FX</span>
           </div>
           <span class="text-[10px] text-neutral-500">Toggle</span>
         </button>
@@ -1296,7 +1369,7 @@
           <span class="material-symbols-outlined">school</span>
         </div>
         <div>
-          <h3 class="text-lg font-bold text-white">Academic Qualifications &amp; Diploma</h3>
+          <h3 class="text-lg font-bold text-white" data-i18n="modal_qual_title">Academic Qualifications &amp; Diploma</h3>
           <span class="font-mono text-xs text-neutral-400">BSUIR (Белорусский государственный университет информатики и радиоэлектроники)</span>
         </div>
       </div>
@@ -1304,41 +1377,41 @@
       <div class="mt-5 space-y-3.5 text-sm leading-relaxed text-neutral-300">
         <div class="p-3.5 rounded-xl bg-surface-elevated border border-white/[0.08] flex flex-col gap-1 font-mono text-xs">
           <div class="flex justify-between text-neutral-400">
-            <span>DEGREE SPECIALTY:</span>
+            <span data-i18n="modal_spec">DEGREE SPECIALTY:</span>
             <span class="text-white font-bold">1-40 05 01-01</span>
           </div>
           <div class="flex justify-between text-neutral-400">
-            <span>QUALIFICATION:</span>
-            <span class="text-accent-cyan font-bold">Programmer &amp; Business Analyst</span>
+            <span data-i18n="modal_qual">QUALIFICATION:</span>
+            <span class="text-accent-cyan font-bold" data-i18n="modal_qual_val">Programmer &amp; Business Analyst</span>
           </div>
           <div class="flex justify-between text-neutral-400">
-            <span>GRADUATION DATE:</span>
-            <span class="text-white">June 2026</span>
+            <span data-i18n="modal_date">GRADUATION DATE:</span>
+            <span class="text-white" data-i18n="modal_date_val">June 2026</span>
           </div>
           <div class="flex justify-between text-neutral-400">
-            <span>DIPLOMA DEFENSE:</span>
-            <span class="text-accent-emerald font-bold">Excellent / Defended</span>
+            <span data-i18n="modal_defense">DIPLOMA DEFENSE:</span>
+            <span class="text-accent-emerald font-bold" data-i18n="modal_defense_val">Excellent / Defended</span>
           </div>
         </div>
 
-        <p class="text-xs sm:text-sm">
+        <p class="text-xs sm:text-sm" data-i18n="modal_p1">
           Trained in rigorous software engineering fundamentals, algorithms, discrete mathematics, distributed systems architecture, business process engineering (BPMN), and enterprise database design.
         </p>
 
-        <p class="text-neutral-400 text-xs">
+        <p class="text-neutral-400 text-xs" data-i18n="modal_p2">
           Diploma thesis centered on designing a scalable, multi-tier athletic commerce and athlete telemetry hub with Spring Boot 3, PostgreSQL, React, and Android Jetpack Compose interop.
         </p>
       </div>
 
       <div class="mt-5 flex justify-end">
-        <button onclick="closeAboutModal()" class="btn-tactile px-4 py-2 rounded-xl bg-accent-cyan text-obsidian font-mono text-xs font-bold uppercase tracking-wider cursor-pointer">
+        <button onclick="closeAboutModal()" class="btn-tactile px-4 py-2 rounded-xl bg-accent-cyan text-obsidian font-mono text-xs font-bold uppercase tracking-wider cursor-pointer" data-i18n="btn_close">
           Close Window
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ==================== FLOATING MISSION CONTROL DOCK (AUTO-HIDE AT HERO) ==================== -->
+  <!-- ==================== FLOATING MISSION CONTROL DOCK ==================== -->
   <footer id="floating-control-bar" class="dock-hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-40 bg-surface-card/90 backdrop-blur-xl border border-white/[0.1] rounded-full px-4 py-2 shadow-2xl flex items-center gap-3 text-xs font-mono">
     <div class="flex items-center gap-1.5">
       <span class="w-2 h-2 rounded-full bg-accent-emerald animate-pulse"></span>
@@ -1358,10 +1431,428 @@
     </a>
   </footer>
 
-  <!-- ==================== LOGIC & INTERACTION SCRIPTS ==================== -->
+  <!-- ==================== TRANSLATIONS & LOGIC SCRIPTS ==================== -->
   <script>
     // -------------------------------------------------------------
-    // 1. Web Audio API Synthesizer (Zero dependencies, pure craft)
+    // Comprehensive Multi-Language Dictionary (EN, RU, MN)
+    // -------------------------------------------------------------
+    const I18N = {
+      en: {
+        nav_role: "BSUIR '26 // SYSTEMS ARCHITECT",
+        nav_about: "About",
+        nav_projects: "Projects",
+        nav_stack: "Stack",
+        nav_contact: "Contact",
+        nav_demos_cta: "Demos",
+        hero_credentials: "BSUIR '26 // PROGRAMMER & BUSINESS ANALYST",
+        hero_status: "OPEN TO FULL-STACK & BACKEND ROLES",
+        hero_title_p1: "Architecting",
+        hero_title_highlight: "distributed backends",
+        hero_title_p2: "and zero-friction web apps.",
+        hero_description: "Graduating from BSUIR in June 2026 as a certified Programmer & Business Analyst (Программист и бизнес-аналитик). Specialized in production JVM microservices (Spring Boot 3, Kotlin, Java 21 LTS), transactional PostgreSQL databases, and high-craft client interfaces with React 19, TypeScript, and Android Jetpack Compose.",
+        stat_apps: "Production Apps",
+        stat_apps_val: "6 Deployed",
+        stat_arch: "Architecture",
+        stat_thesis: "Diploma Thesis",
+        stat_thesis_val: "A+ Defended",
+        stat_edge: "Edge Latency",
+        btn_explore_projects: "Explore 6 Live Systems",
+        btn_initiate_contact: "Initiate Contact",
+        btn_bsuir_specs: "BSUIR Specs",
+        bench_idle: "Cluster Status: Idle",
+        btn_run_benchmark: "RUN BENCHMARK",
+        tps_label: "THROUGHPUT:",
+        proj_badge: "PRODUCTION ARCHITECTURE",
+        proj_title: "Shipped Systems & Live Demos",
+        proj_subtitle: "6 fully functional, deployed full-stack systems. Backends engineered with Spring Boot, Kotlin & Java 21, clients crafted with React 19, TypeScript, and Android Jetpack Compose.",
+        filter_all: "All (6)",
+        filter_fintech: "Fintech",
+        filter_edtech: "EdTech",
+        filter_realtime: "Realtime",
+        card1_tag: "01 // DIPLOMA THESIS PROJECT",
+        card1_title: "BLAZE.by — Sports E-Commerce & Media Platform",
+        card1_desc: "Full-scale multi-tier athletic equipment e-commerce platform and media portal. Engineered with secure cart persistence, multi-criteria category filtering, catalog search, and Android client interop.",
+        card2_tag: "02 // EDTECH & HIRING SIMULATION",
+        card2_title: "DevPrep — Technical Interview & Algorithmic Engine",
+        card2_desc: "Simulated technical recruitment platform designed for candidates preparing for FAANG/enterprise coding rounds. Features algorithmic test runners, timed quizzes, and instant grading.",
+        card3_tag: "03 // PERSONAL FINANCE LEDGER",
+        card3_title: "BYnance — Multi-Currency Wealth & Ledger Platform",
+        card3_desc: "Enterprise personal finance and budget auditing system. Supports real-time multi-currency conversions (BYN, USD, EUR, RUB), category-based expense visualization, and comprehensive admin auditing.",
+        card4_tag: "04 // COLLABORATIVE TASK HUB",
+        card4_title: "ДомДела — Distributed Household Kanban & Gamification",
+        card4_desc: "Shared family chore coordinator and task scheduler. Implements real-time task board updates, karma point attribution, recurring schedule automation, and priority notifications.",
+        card5_tag: "05 // UNIVERSITY MANAGEMENT SYSTEM",
+        card5_title: "Student Attendance & Academic Grade Registry",
+        card5_desc: "Automated attendance tracker for university faculties and students. Includes dynamic QR verification, statistical absence reports, and multi-tier role authorization for deans, professors, and students.",
+        card6_tag: "06 // SOCIAL DISCOVERY HUB",
+        card6_title: "Date Matchmaker — Real-Time Social & Event Discovery",
+        card6_desc: "Curated dating and interest-matching platform with fluid gesture-driven card interactions, location-based event filters, real-time messaging, and profile analytics.",
+        creds_label: "DEMO CREDENTIALS:",
+        creds_candidate: "TEST CANDIDATE:",
+        creds_admin: "ADMIN CREDENTIALS:",
+        creds_profile: "TEST PROFILE:",
+        creds_prof: "PROFESSOR DEMO:",
+        creds_user: "TEST USER:",
+        btn_source: "Source",
+        btn_launch_system: "Launch Live System",
+        btn_user_app: "User",
+        btn_admin_app: "Admin",
+        stack_badge: "TECHNICAL SPECIFICATIONS",
+        stack_title: "Architecture Radar & Core Stack",
+        stack_subtitle: "Battle-tested engineering competencies across distributed backends, reactive web clients, mobile runtimes, and DevOps pipelines.",
+        stack_col1: "Backend & Distributed",
+        stack_col2: "Frontend Systems",
+        stack_col3: "Mobile Architecture",
+        stack_col4: "Infra & Business Analysis",
+        contact_badge: "GET IN TOUCH",
+        contact_title: "Let's engineer something great together.",
+        contact_subtitle: "Open to full-time Software Engineer positions, enterprise contract engagements, backend systems architecture, and technical consulting.",
+        contact_direct_email: "Direct Email",
+        contact_linkedin: "Professional Network",
+        contact_github: "Source Repositories",
+        btn_compose: "Compose",
+        btn_connect: "Connect ↗",
+        btn_explore: "Explore ↗",
+        form_heading: "DISPATCH DIRECT MESSAGE",
+        form_sub: "Submissions are routed directly to enhjargal8919@gmail.com.",
+        form_topic_label: "Inquiry Topic",
+        topic_role: "Full-time Role",
+        topic_arch: "Backend Architecture",
+        topic_app: "Web & Mobile App",
+        topic_consult: "Consulting",
+        form_name_label: "Your Name / Organization *",
+        form_name_ph: "Alex Chen (Tech Lead)",
+        form_email_label: "Your Work Email *",
+        form_email_ph: "name@company.com",
+        form_msg_label: "Project Scope or Role Description *",
+        form_msg_ph: "Detail your project requirements, technology stack, timeline or job opening...",
+        form_sla: "Response SLA: < 24 Hours",
+        btn_transmit: "Transmit Message",
+        modal_qual_title: "Academic Qualifications & Diploma",
+        modal_spec: "DEGREE SPECIALTY:",
+        modal_qual: "QUALIFICATION:",
+        modal_qual_val: "Programmer & Business Analyst",
+        modal_date: "GRADUATION DATE:",
+        modal_date_val: "June 2026",
+        modal_defense: "DIPLOMA DEFENSE:",
+        modal_defense_val: "Excellent / Defended",
+        modal_p1: "Trained in rigorous software engineering fundamentals, algorithms, discrete mathematics, distributed systems architecture, business process engineering (BPMN), and enterprise database design.",
+        modal_p2: "Diploma thesis centered on designing a scalable, multi-tier athletic commerce and athlete telemetry hub with Spring Boot 3, PostgreSQL, React, and Android Jetpack Compose interop.",
+        btn_close: "Close Window",
+        cmd_ph: "Type a command or jump to system...",
+        cmd_heading_systems: "Systems & Demos",
+        cmd_heading_actions: "Quick Actions",
+        cmd_audio_toggle: "Toggle Synthesizer Sound FX"
+      },
+
+      ru: {
+        nav_role: "БГУИР '26 // АРХИТЕКТОР СИСТЕМ",
+        nav_about: "Обо мне",
+        nav_projects: "Проекты",
+        nav_stack: "Стек",
+        nav_contact: "Контакты",
+        nav_demos_cta: "Демо",
+        hero_credentials: "БГУИР '26 // ПРОГРАММИСТ И БИЗНЕС-АНАЛИТИК",
+        hero_status: "ОТКРЫТ К FULL-STACK И BACKEND ПОЗИЦИЯМ",
+        hero_title_p1: "Архитектура",
+        hero_title_highlight: "распределенных систем",
+        hero_title_p2: "и быстрых веб-приложений.",
+        hero_description: "Выпускник БГУИР в июне 2026 года по специальности «Программист и бизнес-аналитик». Специализируюсь на создании высокопроизводительных микросервисов на JVM (Spring Boot 3, Kotlin, Java 21 LTS), транзакционных баз данных PostgreSQL и современных веб-интерфейсов на React 19, TypeScript и Android Jetpack Compose.",
+        stat_apps: "Развернутые системы",
+        stat_apps_val: "6 Проектов",
+        stat_arch: "Архитектура",
+        stat_thesis: "Дипломный проект",
+        stat_thesis_val: "Защищен отлично",
+        stat_edge: "Edge Задержка",
+        btn_explore_projects: "Смотреть 6 систем в бою",
+        btn_initiate_contact: "Связаться со мной",
+        btn_bsuir_specs: "Справка БГУИР",
+        bench_idle: "Статус кластера: Ожидание",
+        btn_run_benchmark: "ЗАПУСТИТЬ ТЕСТ",
+        tps_label: "ПРОПУСКНАЯ СПОСОБНОСТЬ:",
+        proj_badge: "ПРОМЫШЛЕННАЯ АРХИТЕКТУРА",
+        proj_title: "Развернутые системы и живые демо",
+        proj_subtitle: "6 полноценно работающих систем в продакшене. Бэкенды на Spring Boot, Kotlin и Java 21, клиенты на React 19, TypeScript и Android Jetpack Compose.",
+        filter_all: "Все (6)",
+        filter_fintech: "Финтех",
+        filter_edtech: "EdTech",
+        filter_realtime: "Realtime",
+        card1_tag: "01 // ДИПЛОМНЫЙ ПРОЕКТ",
+        card1_title: "BLAZE.by — Спортивная E-Commerce и медиа-платформа",
+        card1_desc: "Многоуровневая платформа интернет-магазина спортивной экипировки и медиа-портал. Разработана с сохранением корзины, сложной фильтрацией каталога и синхронизацией с Android-клиентом.",
+        card2_tag: "02 // EDTECH И СИМУЛЯТОР СОБЕСЕДОВАНИЙ",
+        card2_title: "DevPrep — Платформа технических собеседований и алгоритмов",
+        card2_desc: "Интерактивная среда подготовки разработчиков к техническим интервью. Включает запуск алгоритмических тестов, таймеры задач и мгновенную валидацию решений.",
+        card3_tag: "03 // МУЛЬТИВАЛЮТНЫЙ УЧЕТ КАПИТАЛА",
+        card3_title: "BYnance — Платформа учета личных финансов и бюджетов",
+        card3_desc: "Система персонального финансового учета с поддержкой конвертации нескольких валют в реальном времени (BYN, USD, EUR, RUB), аналитикой расходов и панелью администратора.",
+        card4_tag: "04 // ДОМАШНИЙ KANBAN И ГЕЙМИФИКАЦИЯ",
+        card4_title: "ДомДела — Командный трекер задач и расписаний",
+        card4_desc: "Коллаборативная доска домашних обязанностей. Включает real-time обновление задач, начисление баллов кармы, периодические расписания и приоритетные уведомления.",
+        card5_tag: "05 // СИСТЕМА УНИВЕРСИТЕТСКОГО МЕНЕДЖМЕНТА",
+        card5_title: "Student Attendance — Учет посещаемости и ведомость оценок",
+        card5_desc: "Автоматизированная система фиксации присутствия студентов через QR-коды, формирование отчетов по пропускам и разделение ролей для деканата, преподавателей и студентов.",
+        card6_tag: "06 // СОЦИАЛЬНАЯ ПЛАТФОРМА И СОБЫТИЯ",
+        card6_title: "Date Matchmaker — Real-Time матчинг и поиск событий",
+        card6_desc: "Интерактивный сервис знакомств и поиска мероприятий по интересам с плавной жестовой механикой карточек, чатами реального времени и аналитикой профиля.",
+        creds_label: "ТЕСТОВЫЙ ДОСТУП:",
+        creds_candidate: "ТЕСТОВЫЙ КАНДИДАТ:",
+        creds_admin: "ДОСТУП АДМИНА:",
+        creds_profile: "ТЕСТОВЫЙ ПРОФИЛЬ:",
+        creds_prof: "ДОСТУП ПРЕПОДАВАТЕЛЯ:",
+        creds_user: "ТЕСТОВЫЙ ЮЗЕР:",
+        btn_source: "Код",
+        btn_launch_system: "Открыть систему",
+        btn_user_app: "Клиент",
+        btn_admin_app: "Админка",
+        stack_badge: "ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ",
+        stack_title: "Архитектурный радар и стек",
+        stack_subtitle: "Проверенные на практике компетенции: распределенные бэкенды, реактивные веб-приложения, мобильные среды и CI/CD пайплайны.",
+        stack_col1: "Бэкенд и распределенные системы",
+        stack_col2: "Фронтенд архитектура",
+        stack_col3: "Мобильная разработка",
+        stack_col4: "Инфраструктура и бизнес-анализ",
+        contact_badge: "СВЯЗАТЬСЯ",
+        contact_title: "Давайте спроектируем надежную систему вместе.",
+        contact_subtitle: "Открыт к предложениям на Full-time позиции Software Engineer, контрактной разработке бэкенда, микросервисов и техническому консалтингу.",
+        contact_direct_email: "Прямой Email",
+        contact_linkedin: "Профессиональная сеть",
+        contact_github: "Репозитории исходного кода",
+        btn_compose: "Написать",
+        btn_connect: "Профиль ↗",
+        btn_explore: "Открыть ↗",
+        form_heading: "ОТПРАВИТЬ СООБЩЕНИЕ НАПРЯМУЮ",
+        form_sub: "Сообщения доставляются мгновенно на enhjargal8919@gmail.com.",
+        form_topic_label: "Тема обращения",
+        topic_role: "Full-time работа",
+        topic_arch: "Архитектура бэкенда",
+        topic_app: "Веб и мобильное приложение",
+        topic_consult: "Консалтинг",
+        form_name_label: "Ваше имя / Компания *",
+        form_name_ph: "Алексей Смирнов (Тимлид)",
+        form_email_label: "Рабочий Email *",
+        form_email_ph: "name@company.ru",
+        form_msg_label: "Описание задачи или вакансии *",
+        form_msg_ph: "Опишите требования к проекту, стек, сроки или предложение о работе...",
+        form_sla: "Срок ответа: до 24 часов",
+        btn_transmit: "Отправить запрос",
+        modal_qual_title: "Академическая квалификация и диплом",
+        modal_spec: "СПЕЦИАЛЬНОСТЬ:",
+        modal_qual: "КВАЛИФИКАЦИЯ:",
+        modal_qual_val: "Программист и бизнес-аналитик",
+        modal_date: "ГОД ОКОНЧАНИЯ:",
+        modal_date_val: "Июнь 2026",
+        modal_defense: "ЗАЩИТА ДИПЛОМА:",
+        modal_defense_val: "Отлично / Защищен",
+        modal_p1: "Фундаментальная подготовка в области алгоритмов, дискретной математики, распределенных вычислений, моделирования бизнес-процессов (BPMN) и проектирования баз данных.",
+        modal_p2: "Дипломный проект посвящен разработке масштабируемой многозвенной спортивной e-commerce платформы на Spring Boot 3, PostgreSQL, React и Android Jetpack Compose.",
+        btn_close: "Закрыть",
+        cmd_ph: "Введите команду или название системы...",
+        cmd_heading_systems: "Проекты и демо",
+        cmd_heading_actions: "Быстрые действия",
+        cmd_audio_toggle: "Переключить звуковые эффекты"
+      },
+
+      mn: {
+        nav_role: "БГУИР '26 // СИСТЕМИЙН АРХИТЕКТОР",
+        nav_about: "Тухай",
+        nav_projects: "Төслүүд",
+        nav_stack: "Технологи",
+        nav_contact: "Холбогдох",
+        nav_demos_cta: "Дэмо",
+        hero_credentials: "БГУИР '26 // ПРОГРАММИСТ & БИЗНЕС АНАЛИТИК",
+        hero_status: "FULL-STACK & BACKEND АЖЛЫН САНАЛ АВАХАД БЭЛЭН",
+        hero_title_p1: "Найдвартай",
+        hero_title_highlight: "тархмал системүүд",
+        hero_title_p2: "болон өндөр хурдтай веб шийдлүүд.",
+        hero_description: "2026 оны 6-р сард БГУИР (Беларусийн Улсын Мэдээлэл Зүй, Радиоэлектроникийн Их Сургууль)-ийг «Программист ба бизнес-аналитик» мэргэжлээр төгсөнө. Өндөр ачаалал даах JVM микросервис (Spring Boot 3, Kotlin, Java 21 LTS), найдвартай PostgreSQL өгөгдлийн сан, болон React 19, TypeScript, Android Jetpack Compose технологиор систем бүтээн хөгжүүлдэг.",
+        stat_apps: "Бэлэн төслүүд",
+        stat_apps_val: "6 Систем",
+        stat_arch: "Архитектур",
+        stat_thesis: "Дипломын төсөл",
+        stat_thesis_val: "Онц хамгаалсан",
+        stat_edge: "Холболтын хурд",
+        btn_explore_projects: "6 Бодит төсөлтэй танилцах",
+        btn_initiate_contact: "Холбоо барих",
+        btn_bsuir_specs: "БГУИР тодорхойлолт",
+        bench_idle: "Кластерийн төлөв: Сул зогсолт",
+        btn_run_benchmark: "ТЕСТ АЖИЛЛУУЛАХ",
+        tps_label: "СЕКУНДЭД БОЛОВСРУУЛАХ:",
+        proj_badge: "ҮЙЛДВЭРЛЭЛИЙН АРХИТЕКТУР",
+        proj_title: "Ашиглалтад орсон бодит системүүд",
+        proj_subtitle: "Амжилттай ажиллаж буй 6 бие даасан систем. Spring Boot, Kotlin, Java 21 LTS дээр суурилсан найдвартай backend, React 19, TypeScript, Android Compose-оор хийгдсэн хэрэглэгчийн интерфейс.",
+        filter_all: "Бүгд (6)",
+        filter_fintech: "Финтек",
+        filter_edtech: "EdTech",
+        filter_realtime: "Realtime",
+        card1_tag: "01 // ДИПЛОМЫН ХАМГААЛАЛТЫН АЖИЛ",
+        card1_title: "BLAZE.by — Спортын E-Commerce ба медиа платформ",
+        card1_desc: "Бүрэн хэмжээний спортын барааны онлайн худалдааны платформ. Сагсны өгөгдөл найдвартай хадгалалт, олон шалгуурт шүүлтүүр, хайлтын систем болон Android апптай шууд холболттой.",
+        card2_tag: "02 // EDTECH & ЯРИЛЦЛАГЫН СИМУЛЯТОР",
+        card2_title: "DevPrep — Техникийн ярилцлага, алгоритмын платформ",
+        card2_desc: "Хөгжүүлэгчдийг олон улсын технологийн компаниудын шалгалтын шатанд бэлтгэх интерактив симулятор. Алгоритм шалгагч, хугацаат тест, шууд оноо тооцоологчтой.",
+        card3_tag: "03 // ОЛОН ВАЛЮТЫН ХӨРӨНГИЙН БҮРТГЭЛ",
+        card3_title: "BYnance — Санхүү, хөрөнгө хяналтын платформ",
+        card3_desc: "Хувийн санхүү, төсөв хяналтын ухаалаг систем. Бодит цагийн валютын хөрвүүлэлт (BYN, USD, EUR, RUB), зардлын ангилал, админ аудитын бүрэн боломжтой.",
+        card4_tag: "04 // ГЭР БҮЛИЙН KANBAN БА УРАМШУУЛАЛТ СИСТЕМ",
+        card4_title: "ДомДела — Гэрийн ажлын төлөвлөгч, карма онооны төв",
+        card4_desc: "Гэр бүлийн гишүүдэд зориулсан ажлын хуваарилагч самбар. Бодит цагийн төлөвийн шинэчлэлт, карма онооны систем, давтагдах хуваарь ба мэдэгдэлтэй.",
+        card5_tag: "05 // ИХ СУРГУУЛИЙН УДИРДЛАГЫН СИСТЕМ",
+        card5_title: "Student Attendance — Ирц бүртгэл ба дүнгүүдийн бүртгэл",
+        card5_desc: "Оюутны ирцийг динамик QR кодоор баталгаажуулах, таслалтын статистик тайлан гаргах, декан, багш, оюутны эрхийн зохицуулалттай их сургуулийн систем.",
+        card6_tag: "06 // СОШИАЛ СОНИРХЛЫН СҮЛЖЭЭ",
+        card6_title: "Date Matchmaker — Бодит цагийн танилцах ба эвент платформууд",
+        card6_desc: "Сонирхол нэгтэй хүмүүсийг холбох, үйл явдал хайх систем. Карт шудрах мэдрэгчтэй интерфейс, байршилд суурилсан шүүлтүүр, чатын системтэй.",
+        creds_label: "ТЕСТ НЭВТРЭХ:",
+        creds_candidate: "ТЕСТ НЭР/НУУЦ:",
+        creds_admin: "АДМИН ЭРХ:",
+        creds_profile: "ТЕСТ ХЭРЭГЛЭГЧ:",
+        creds_prof: "БАГШИЙН ЭРХ:",
+        creds_user: "ТЕСТ ХЭРЭГЛЭГЧ:",
+        btn_source: "Код",
+        btn_launch_system: "Системийг нээх",
+        btn_user_app: "Хэрэглэгч",
+        btn_admin_app: "Админ",
+        stack_badge: "ТЕХНИКИЙН ҮЗҮҮЛЭЛТҮҮД",
+        stack_title: "Архитектур ба ашигласан технологиуд",
+        stack_subtitle: "Бодит үйлдвэрлэлд туршигдсан ур чадвар: тархмал систем, реактив веб, гар утасны апп болон CI/CD автоматжуулалт.",
+        stack_col1: "Backend ба тархмал систем",
+        stack_col2: "Frontend системүүд",
+        stack_col3: "Гар утасны архитектур",
+        stack_col4: "Дэд бүтэц ба бизнес шинжилгээ",
+        contact_badge: "ХОЛБОГДОХ",
+        contact_title: "Шилдэг бүтээгдэхүүнийг хамтран бүтээе.",
+        contact_subtitle: "Full-time Software Engineer ажлын санал, гэрээт backend систем хөгжүүлэлт, микросервис болон техникийн зөвлөгөө өгөхөд нээлттэй.",
+        contact_direct_email: "Шууд И-Мэйл",
+        contact_linkedin: "Мэргэжлийн сүлжээ",
+        contact_github: "Нээлттэй эхийн кодууд",
+        btn_compose: "Мэйл илгээх",
+        btn_connect: "Холбогдох ↗",
+        btn_explore: "Үзэх ↗",
+        form_heading: "ШУУД ЗУРВАС ИЛГЭЭХ",
+        form_sub: "Таны зурвас enhjargal8919@gmail.com хаягт шууд хүргэгдэнэ.",
+        form_topic_label: "Зурвасын сэдэв",
+        topic_role: "Үндсэн ажилтан",
+        topic_arch: "Backend Архитектур",
+        topic_app: "Веб ба Аппликейшн",
+        topic_consult: "Зөвлөх үйлчилгээ",
+        form_name_label: "Таны нэр / Байгууллага *",
+        form_name_ph: "Батбаяр (Tech Lead)",
+        form_email_label: "Ажлын И-Мэйл *",
+        form_email_ph: "name@company.mn",
+        form_msg_label: "Төслийн цар хүрээ эсвэл ажлын байрны тодорхойлолт *",
+        form_msg_ph: "Төслийн шаардлага, технологийн стек, хугацаа эсвэл ажлын саналаа энд бичнэ үү...",
+        form_sla: "Хариу өгөх хугацаа: 24 цагийн дотор",
+        btn_transmit: "Зурвас илгээх",
+        modal_qual_title: "Боловсрол, мэргэжлийн диплом",
+        modal_spec: "МЭРГЭЖЛИЙН КОД:",
+        modal_qual: "МЭРГЭЖИЛ:",
+        modal_qual_val: "Программист ба Бизнес-аналитик",
+        modal_date: "ТӨГСӨХ ОН САР:",
+        modal_date_val: "2026 оны 6-р сар",
+        modal_defense: "ДИПЛОМЫН ХАМГААЛАЛТ:",
+        modal_defense_val: "Онц / Хамгаалсан",
+        modal_p1: "Алгоритм, дискрет математик, тархмал системийн тооцоолол, бизнесийн процессын загварчлал (BPMN) болон өгөгдлийн сангийн гүнзгийрүүлсэн сургалттай.",
+        modal_p2: "Дипломын төсөл нь Spring Boot 3, PostgreSQL, React, Android Jetpack Compose технологи ашигласан тархмал спортын цахим худалдааны систем юм.",
+        btn_close: "Хаах",
+        cmd_ph: "Команд эсвэл системийн нэр хайх...",
+        cmd_heading_systems: "Системүүд ба демо",
+        cmd_heading_actions: "Түргэн үйлдлүүд",
+        cmd_audio_toggle: "Дууны эффектийг асаах/унтраах"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      if (!I18N[lang]) lang = 'en';
+      currentLang = lang;
+      localStorage.setItem('portfolio_lang', lang);
+      document.documentElement.lang = lang;
+
+      // Update current label in navbar button
+      const labelEl = document.getElementById('current-lang-label');
+      if (labelEl) labelEl.textContent = lang.toUpperCase();
+
+      // Update checkmarks in dropdown
+      document.querySelectorAll('.lang-opt').forEach(opt => {
+        const isMatch = opt.getAttribute('data-lang') === lang;
+        const check = opt.querySelector('.check-icon');
+        if (check) check.style.display = isMatch ? 'inline' : 'none';
+        if (isMatch) {
+          opt.classList.add('text-accent-cyan', 'font-bold');
+        } else {
+          opt.classList.remove('text-accent-cyan', 'font-bold');
+        }
+      });
+
+      // Apply text translations
+      const dict = I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // Apply placeholder translations
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (dict[key] !== undefined) {
+          el.setAttribute('placeholder', dict[key]);
+        }
+      });
+    }
+
+    function toggleLangDropdown(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('lang-menu');
+      const isVisible = menu.style.display !== 'none';
+      menu.style.display = isVisible ? 'none' : 'block';
+      playTone(600, 'sine', 0.04, 0.03);
+    }
+
+    function selectLanguage(lang) {
+      setLanguage(lang);
+      document.getElementById('lang-menu').style.display = 'none';
+      playChimeSound();
+      const names = { en: 'English', ru: 'Русский', mn: 'Монгол хэл' };
+      showToast('Language: ' + names[lang], 'success');
+    }
+
+    function selectLanguageAndClose(lang) {
+      setLanguage(lang);
+      const modal = document.getElementById('welcome-lang-modal');
+      modal.style.display = 'none';
+      playChimeSound();
+      const names = { en: 'English', ru: 'Русский', mn: 'Монгол хэл' };
+      showToast('Language set to ' + names[lang], 'success');
+    }
+
+    // Close language dropdown on outside click
+    document.addEventListener('click', (e) => {
+      const wrapper = document.getElementById('lang-dropdown-wrapper');
+      if (wrapper && !wrapper.contains(e.target)) {
+        const menu = document.getElementById('lang-menu');
+        if (menu) menu.style.display = 'none';
+      }
+    });
+
+    // Check on startup if language was previously selected
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('portfolio_lang');
+      if (savedLang && I18N[savedLang]) {
+        setLanguage(savedLang);
+      } else {
+        // First-time visitor: open the welcome language picker modal!
+        const modal = document.getElementById('welcome-lang-modal');
+        if (modal) modal.style.display = 'flex';
+        setLanguage('en');
+      }
+    });
+
+    // -------------------------------------------------------------
+    // Web Audio API Synthesizer
     // -------------------------------------------------------------
     let audioCtx = null;
     let soundEnabled = true;
@@ -1389,9 +1880,7 @@
         gain.connect(audioCtx.destination);
         osc.start();
         osc.stop(audioCtx.currentTime + duration);
-      } catch (e) {
-        // Audio policy ignore
-      }
+      } catch (e) {}
     }
 
     function playClickSound() {
@@ -1422,7 +1911,7 @@
     });
 
     // -------------------------------------------------------------
-    // 2. Global Scroll Laser, Spotlight & Dock Auto-Visibility
+    // Global Scroll Laser, Spotlight & Dock Auto-Visibility
     // -------------------------------------------------------------
     const dock = document.getElementById('floating-control-bar');
     window.addEventListener('scroll', () => {
@@ -1430,7 +1919,6 @@
       const scrolled = (window.scrollY / (docHeight || 1)) * 100;
       document.getElementById('scroll-progress').style.width = scrolled + '%';
 
-      // Only show floating dock when scrolled past 220px to prevent blocking hero text!
       if (dock) {
         if (window.scrollY > 220) {
           dock.classList.remove('dock-hidden');
@@ -1448,7 +1936,7 @@
     });
 
     // -------------------------------------------------------------
-    // 3. Senior Craft Card Dynamic Spotlight & 3D Tilt
+    // Senior Craft Card Dynamic Spotlight & 3D Tilt
     // -------------------------------------------------------------
     const spotlightCards = document.querySelectorAll('.spotlight-card');
     spotlightCards.forEach(card => {
@@ -1472,7 +1960,7 @@
     });
 
     // -------------------------------------------------------------
-    // 4. Magnetic Buttons Easing (better-ui compliant)
+    // Magnetic Buttons Easing
     // -------------------------------------------------------------
     const magneticBtns = document.querySelectorAll('.magnetic');
     magneticBtns.forEach(btn => {
@@ -1488,7 +1976,7 @@
     });
 
     // -------------------------------------------------------------
-    // 5. Interactive Particle Constellation Canvas (Hero)
+    // Interactive Particle Constellation Canvas (Hero)
     // -------------------------------------------------------------
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
@@ -1582,7 +2070,7 @@
     }
 
     // -------------------------------------------------------------
-    // 6. Interactive Terminal Studio & Benchmark Engine
+    // Interactive Terminal Studio & Benchmark Engine
     // -------------------------------------------------------------
     const CODE_SNIPPETS = {
       finance: `<div class="text-neutral-500">// Multi-Currency Financial Ledger Service</div>
@@ -1686,7 +2174,7 @@
     }
 
     // -------------------------------------------------------------
-    // 7. Live Sinusoidal Throughput Waveform Canvas
+    // Live Sinusoidal Throughput Waveform Canvas
     // -------------------------------------------------------------
     const waveCanvas = document.getElementById('waveform-canvas');
     if (waveCanvas) {
@@ -1714,7 +2202,7 @@
     }
 
     // -------------------------------------------------------------
-    // 8. One-Click Credential Copy & Toast Notifications
+    // One-Click Credential Copy & Toast Notifications
     // -------------------------------------------------------------
     function showToast(message, type = 'info') {
       const container = document.getElementById('toast-container');
@@ -1757,7 +2245,7 @@
     }
 
     // -------------------------------------------------------------
-    // 9. Command Palette (Cmd+K / Ctrl+K)
+    // Command Palette (Cmd+K / Ctrl+K)
     // -------------------------------------------------------------
     function toggleCommandPalette() {
       const palette = document.getElementById('cmd-palette');
@@ -1805,7 +2293,7 @@
     });
 
     // -------------------------------------------------------------
-    // 10. Filter System Cards
+    // Filter System Cards
     // -------------------------------------------------------------
     function filterSystem(category) {
       const items = document.querySelectorAll('.system-item');
@@ -1830,7 +2318,7 @@
     }
 
     // -------------------------------------------------------------
-    // 11. Modal Windows (BSUIR Qualifications)
+    // Modal Windows (BSUIR Qualifications)
     // -------------------------------------------------------------
     function openAboutModal(e) {
       if (e) e.preventDefault();
@@ -1843,7 +2331,7 @@
     }
 
     // -------------------------------------------------------------
-    // 12. Contact Form Topic Selector
+    // Contact Form Topic Selector
     // -------------------------------------------------------------
     function selectTopic(button, topicName) {
       document.querySelectorAll('.topic-chip').forEach(chip => {
